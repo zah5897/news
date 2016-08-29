@@ -8,4 +8,13 @@ public class RedisKeys {
 
 	// 用户额外属性相关
 	public static final String KEY_TAG = "key_tags";
+	
+	
+	
+	public static final String KEY_WEATHER_DATA="redis_weather_data";
+	public static final String KEY_WEATHER_TIME="redis_weather_time";
+	
+	
+	
+	
 }

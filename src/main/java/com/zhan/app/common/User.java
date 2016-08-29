@@ -18,6 +18,7 @@ public class User {
 	
 	
 	private String zh_cn;
+	
 
 	public String getId() {
 		return id;
