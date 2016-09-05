@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.zhan.app.common.News;
 import com.zhan.app.common.NewsDetial;
+import com.zhan.app.common.Video;
 import com.zhan.app.news.util.TextUtils;
 
 @Repository("newsDao")
@@ -56,4 +57,16 @@ public class NewsDao extends BaseDao {
 		return mongoTemplate.findOne(query, NewsDetial.class);
 	}
 
+	public List<Video> listVideos(int count) {
+		Query query = new Query();
+		query.with(new Sort(new Order(Direction.DESC, "_id")));
+		query.limit(count);
+		return mongoTemplate.find(query, Video.class);
+	}
+	public Video findVideo(String id) {
+		Query query = new Query();
+		Criteria criteria = Criteria.where("_id").is(id);
+		query.addCriteria(criteria);
+		return mongoTemplate.findOne(query, Video.class);
+	}
 }

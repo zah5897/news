@@ -39,7 +39,7 @@ public class WeatherService {
 				if (locationArray != null && locationArray.size() > 0) {
 					JSONObject weather = locationArray.getJSONObject(0);
 					JSONObject now = weather.getJSONObject("now");
-					now.put("weather_icon", "http://"+host+"/news/weather_icon/"+now.getString("code")+".png");
+					now.put("weather_icon", "/weather_icon/"+now.getString("code")+".png");
 //					now.put("weather_icon", "http://localhost:8899/news/weather_icon/0.png");
 					weather.put("now", now);
 
