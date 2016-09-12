@@ -1,0 +1,484 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+
+        <!-- 通用渲染相关 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><!--[if IE]><![endif]-->
+        <meta name="renderer" content="webkit" /><!-- Set render engine for 360 browser -->
+        <!--js dymantic <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />-->
+        <meta content="modeName=750-12" name="grid" />
+
+
+        <!-- 调试相关 可选 -->
+        <!--禁用缓存<meta http-equiv="Pragma" content="no-cache">-->
+        <!--<meta http-equiv="Cache-Control" content="no-siteapp" /> 转码申明：用百度打开网页可能会对其进行转码（比如贴广告），避免转码可添加如下meta -->
+
+
+        <!-- for old mobile device 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+        <meta name="HandheldFriendly" content="true">
+        <meta name="MobileOptimized" content="320"><!-- 微软的老式浏览器 -->
+        <meta name="screen-orientation" content="portrait"><!-- uc强制竖屏 -->
+        <meta name="x5-orientation" content="portrait"><!-- QQ强制竖屏 -->
+        <meta name="full-screen" content="yes"><!-- UC强制全屏 -->
+        <meta name="x5-fullscreen" content="true"><!-- QQ强制全屏 -->
+        <meta name="browsermode" content="application"><!-- UC应用模式 -->
+        <meta name="x5-page-mode" content="app"><!-- QQ应用模式 -->
+        <meta name="msapplication-tap-highlight" content="no"><!-- windows phone 点击无高光 -->
+        <meta name="msapplication-TileColor" content="#000"/> <!-- Windows 8 磁贴颜色 -->
+        <meta name="msapplication-TileImage" content="apple-touch-icon.png"/> <!-- Windows 8 磁贴图标 -->
+        <meta name="mobile-agent" content="format=[wml|xhtml|html5]; url=url"><!-- 站点适配：主要用于PC-手机页的对应关系。 [wml|xhtml|html5]根据手机页的协议语言，选择其中一种；url="url" 后者代表当前PC页所对应的手机页URL，两者必须是一一对应关系。-->
+
+        <!-- for android and Chrome : Add to homescreen -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="icon" sizes="192x192" href="apple-touch-icon.png">
+
+
+        <!-- for ios -->
+        <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- 启用 WebApp 全屏模式 伪装app -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /><!-- 隐藏状态栏/设置状态栏颜色 -->
+        <meta name="apple-mobile-web-app-title" content="标题"><!-- 添加到主屏后的标题 -->
+        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+        <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png">
+        <meta content="telephone=no" name="format-detection" /><!-- 忽略数字自动识别为电话号码 -->
+        <meta content="email=no" name="format-detection" /><!-- 忽略识别邮箱 -->
+
+
+
+
+        <title>BAIDU</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+        <!--屏幕适配 flexible-->
+        <script src="lib/flexible/build/flexible.debug.js"></script>
+        <script src="lib/flexible/build/makegrid.debug.js"></script>
+
+        <link rel="stylesheet" href="lib/normalize-css/normalize.css">
+
+
+        <!-- <script src="lib/modernizer/modernizr.js"></script>
+        <script src="assets/js/plugins.js"></script> -->
+
+
+        <!-- main logic -->
+        <link rel="stylesheet" href="assets/css/global.css">
+        <link rel="stylesheet" href="assets/css/main.css">
+
+
+    </head>
+    <body>
+
+        <div class="page-section">
+
+        
+            <div id="weather" class="mc weather_loading">
+                <span id="weather_temperature"></span>
+                <img id="weather_icon" src="http://117.143.221.190:8899/news/weather_icon/4.png" alt="">
+                <span id="weather_city"></span>
+                <span id="weather_text"></span>
+            </div>
+
+            <div id="baiduSearch" class="mc">
+                <img src="assets/images/baidu-logo.png" alt="" class="logo mc">
+                <form action="http://m.baidu.com/s" method="GET">
+                    <input type="text" name="word" placeholder="请输入搜索内容" class="keyword" />
+                    <button type="submit" class="submit">百度一下</button>
+                </form>
+            </div>
+
+            <div id="hotChannel" class="mc">
+                <a href="http://m.toutiao.com" class="item">
+                    <img class=item-icon src="assets/images/chn-ico-1.png" alt="" />
+                    <span class="item-label">新闻</span>
+                </a>
+                <a href="http://m.qidian.com" class="item">
+                    <img class=item-icon src="assets/images/chn-ico-2.png" alt="" />
+                    <span class="item-label">小说</span>
+                </a>
+                <a href="http://tv.youku.com" class="item">
+                    <img class=item-icon src="assets/images/chn-ico-3.png" alt="" />
+                    <span class="item-label">视频</span>
+                </a>
+                <a href="http://m.budejie.com" class="item">
+                    <img class=item-icon src="assets/images/chn-ico-4.png" alt="" />
+                    <span class="item-label">搞笑</span>
+                </a>
+                <a href="http://3g.ganji.com" class="item">
+                    <img class=item-icon src="assets/images/chn-ico-5.png" alt="" />
+                    <span class="item-label">生活</span>
+                </a>
+            </div>
+
+
+            <ul id="hotNews" class="list mc">
+                <li class="item">
+                    <a href="">iphone6侵权</a>
+                </li>
+                <li class="item">
+                    <a href="">途牛跟团自助游自助游自助游</a>
+                </li>
+                <li class="item">
+                    <a href="">iphone6侵权</a>
+                </li>
+                <li class="item">
+                    <a href="">iphone6侵权</a>
+                </li>
+            </div>
+        </div>
+
+        <div class="page-section nobd">
+            <ul id="topNav" class="list mc">
+                <li class="item">
+                    <a href="http://m.baidu.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_baidu.jpg" alt="">百度</a>
+                    <a href="http://info.3g.qq.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_tencent.jpg" alt="">腾讯</a>
+                    <a href="http://sina.cn" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_sina.jpg" alt="">新浪</a>
+                    <a href="http://3g.163.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_163.jpg" alt="">网易</a>
+                </li>
+                <li class="item">
+                    <a href="http://m.taobao.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_taobao.jpg" alt="">淘宝</a>
+                    <a href="http://www.tmall.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_tmall.jpg" alt="">天猫</a>
+                    <a href="http://m.jd.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_jd.jpg" alt="">京东</a>
+                    <a href="http://m.suning.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_suning.jpg" alt="">苏宁</a>
+                </li>
+                <li class="item">
+                    <a href="http://m.budejie.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_neihan.jpg" alt="">段子</a>
+                    <a href="http://www.bilibili.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_bilibili.jpg" alt="">动画</a>
+                    <a href="http://m.ctrip.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_ctrip.jpg" alt="">携程</a>
+                    <a href="http://m.vip.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_ctrip.jpg" alt="">唯品会</a>
+                </li>
+                
+            </ul>
+        </div>
+
+        <div class="page-section">
+            <div id="fastNav" class="mc">
+                <div class="section-tit">
+                    <h3><img class="section-icon" src="assets/images/fastnav-icon.png" alt="">快速导航</h3>
+                </div>
+                <dl class="fastNav" class="list">
+                    <dt class="label">名站</dt>
+                    <dd>
+                        <a href="http://info.3g.qq.com" title="">腾讯</a>
+                        <a href="http://3g.163.com" title="">网易</a>
+                        <a href="http://sina.cn" title="">新浪</a>
+                        <a href="http://m.ctrip.com" title="">携程</a>
+                    </dd>
+                </dl>
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">新闻</dt>
+                    <dd>
+                        <a href="http://m.toutiao.com" title="">奇闻</a>
+                        <a href="http://m.sohu.com" title="">搜狐</a>
+                        <a href="http://i.ifeng.com" title="">凤凰</a>
+                        <a href="http://m.huanqiu.com" title="">环球</a>
+                    </dd>
+                </dl>
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">视频</dt>
+                    <dd>
+                        <a href="http://tv.youku.com" title="">优酷</a>
+                        <a href="http://www.tudou.com" title="">土豆</a>
+                        <a href="http://m.le.com" title="">乐视</a>
+                        <a href="http://m.iqiyi.com" title="">爱奇艺</a>
+                    </dd>
+                </dl>
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">购物</dt>
+                    <dd>
+                        <a href="http://m.taobao.com" title="">淘宝</a>
+                        <a href="http://www.tmall.com" title="">天猫</a>
+                        <a href="http://m.dangdang.com" title="">当当</a>
+                        <a href="http://m.vip.com" title="">唯品会</a>
+                    </dd>
+                </dl>
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">商城</dt>
+                    <dd>
+                        <a href="http://m.jd.com" title="">京东</a>
+                        <a href="http://m.suning.com" title="">苏宁</a>
+                        <a href="http://m.yhd.com" title="">1号店</a>
+                        <a href="http://www.amazon.cn" title="">亚马逊</a>
+                    </dd>
+                </dl>
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">体育</dt>
+                    <dd>
+                        <a href="http://sports.sina.cn" title="">新浪</a>
+                        <a href="http://m.hupu.com/nb" title="">NBA</a>
+                        <a href="http://m.sohu.com" title="">搜狐</a>
+                        <a href="http://www.lottery.gov.cn" title="">彩票</a>
+                    </dd>
+                </dl>
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">汽车</dt>
+                    <dd>
+                        <a href="http://m.autohome.com.cn" title="">之家</a>
+                        <a href="http://www.xincheping.com" title="">新车</a>
+                        <a href="http://m.58che.comm" title="">58车</a>
+                        <a href="https://m.renrenche.com" title="">二手车</a>
+                    </dd>
+                </dl>
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">旅游</dt>
+                    <dd>
+                        <a href="http://m.ctrip.com" title="">携程</a>
+                        <a href="http://m.tuniu.com" title="">途牛</a>
+                        <a href="http://touch.qunar.com" title="">去哪儿</a>
+                        <a href="http://m.lvmama.com" title="">驴妈妈</a>
+                    </dd>
+                </dl>
+                 <dl class="fastNav" class="list mc">
+                    <dt class="label">直播</dt>
+                    <dd>
+                        <a href="http://www.inke.com/hotlive_list.html" title="">映客</a>
+                        <a href="http://m.douyu.com" title="">斗鱼</a>
+                        <a href="http://www.zhibo8.cc" title="">直播吧</a>
+                        <a href="http://m.panda.tv" title="">熊猫直播</a>
+                    </dd>
+                </dl>
+
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">笑话</dt>
+                    <dd>
+                        <a href="http://m.budejie.com" title="">不得姐</a>
+                        <a href="http://m.baozou.com/all/hot" title="">暴走</a>
+                        <a href="http://m.neihanshequ.com" title="">段子</a>
+                        <a href="http://www.qiushibaike.com" title="">糗百</a>
+                    </dd>
+                </dl>
+
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">财经</dt>
+                    <dd>
+                        <a href="http://wap.eastmoney.com/iphone/default.shtml" title="">东财</a>
+                        <a href="http://finance.sina.com.cn" title="">新浪</a>
+                        <a href="http://m.sohu.com/c/5/?_trans_=000115_3w" title="">搜狐</a>
+                        <a href="http://3g.cnfol.com" title="">中金</a>
+                    </dd>
+                </dl>
+
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">军事</dt>
+                    <dd>
+                        <a href="http://m.miercn.com" title="">米尔</a>
+                        <a href="http://mil.sina.cn" title="">新浪</a>
+                        <a href="http://mil.eastday.com" title="">东方</a>
+                        <a href="http://imil.ifeng.com" title="">凤凰</a>
+                    </dd>
+                </dl>
+
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">生活</dt>
+                    <dd>
+                        <a href="http://m.58.com" title="">58</a>
+                        <a href="http://3g.ganji.com" title="">赶集</a>
+                        <a href="http://m.jia.com" title="">齐家</a>
+                        <a href="http://m.to8to.com" title="">土巴兔</a>
+                    </dd>
+                </dl>
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">小说</dt>
+                    <dd>
+                        <a href="http://ubook.qq.com" title="">QQ</a>
+                        <a href="http://m.qidian.com" title="">起点</a>
+                        <a href="http://m.sxcnw.net" title="">书香</a>
+                        <a href="http://m.hongxiu.com" title="">爱阅读</a>
+                    </dd>
+                </dl>
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">团购</dt>
+                    <dd>
+                        <a href="https://m.nuomi.com" title="">糯米</a>
+                        <a href="http://i.meituan.com" title="">美团</a>
+                        <a href="http://m.dianping.com" title="">大众</a>
+                        <a href="http://jhs.m.taobao.com" title="">聚划算</a>
+                    </dd>
+                </dl>
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">社区</dt>
+                    <dd>
+                        <a href="http://www.tianya.cn/m" title="">天涯</a>
+                        <a href="http://m.zhihu.com" title="">知乎</a>
+                        <a href="http://m.douban.com" title="">豆瓣</a>
+                        <a href="http://m.weibo.cn/p/102803?wm=5091_0026" title="">微博</a>
+                    </dd>
+                </dl>
+                <dl class="fastNav" class="list mc">
+                    <dt class="label">交友</dt>
+                    <dd>
+                        <a href="http://v.jiayuan.com" title="">世纪</a>
+                        <a href="http://i.baihe.com" title="">百合</a>
+                        <a href="http://m.zhenai.com" title="">珍爱</a>
+                        <a href="http://3g.yuehui.163.com" title="">同城</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="page-section">
+            <div id="toutiao" class="mc">
+                <div class="section-tit">
+                    <h3><img class="section-icon" src="assets/images/toutiao-icon.png" alt="">今日头条</h3>
+                </div>
+                <dl class="toutiao" class="list">
+                    <dt class="thumb">
+                        <img src="assets/images/demo/toutiao.jpg" alt="">
+                    </dt>
+                    <dd>
+                        <a href="" title="">潘长江征战喜剧人 不服老获赞</a>
+                    </dd>
+                </dl>
+                <dl class="toutiao" class="list">
+                    <dt class="thumb">
+                        <img src="assets/images/demo/toutiao.jpg" alt="">
+                    </dt>
+                    <dd>
+                        <a href="" title="">潘长江征战喜剧人 不服老获赞</a>
+                    </dd>
+                </dl>
+                <div class="section-actions">
+                    <div class="section-action-item">
+                        <img src="assets/images/icon_more.jpg" alt="" class="section-action-icon">
+                        查看更多
+                    </div>
+                    <div class="section-action-item end">
+                        <img src="assets/images/icon_refresh.jpg" alt="" class="section-action-icon">
+                        换一批
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-section end">
+            <div id="video" class="mc">
+                <div class="section-tit">
+                    <h3><img class="section-icon" src="assets/images/budejie-icon.png" alt="">搞笑视频</h3>
+                    <span class="tip">3213看过</span>
+                </div>
+                <div id="videos">
+                        <a class="video" href="" title="">
+                            <img class="thumb" src="assets/images/demo/toutiao.jpg" alt="">
+                            <span class="title">潘长江征战喜剧人 不服老获赞</span>
+                        </a>
+                        <a class="video" href="" title="">
+                            <img class="thumb" src="assets/images/demo/toutiao.jpg" alt="">
+                            <span class="title">潘长江征战喜剧人 不服老获赞</span>
+                        </a>
+                        <a class="video" href="" title="">
+                            <img class="thumb" src="assets/images/demo/toutiao.jpg" alt="">
+                            <span class="title">潘长江征战喜剧人 不服老获赞</span>
+                        </a>
+                        <a class="video" href="" title="">
+                            <img class="thumb" src="assets/images/demo/toutiao.jpg" alt="">
+                            <span class="title">潘长江征战喜剧人 不服老获赞</span>
+                        </a>
+                        <a class="video" href="" title="">
+                            <img class="thumb" src="assets/images/demo/toutiao.jpg" alt="">
+                            <span class="title">潘长江征战喜剧人 不服老获赞</span>
+                        </a>
+                        <a class="video" href="" title="">
+                            <img class="thumb" src="assets/images/demo/toutiao.jpg" alt="">
+                            <span class="title">潘长江征战喜剧人 不服老获赞</span>
+                        </a>
+                </div>
+                <div class="section-actions">
+                    <div class="section-action-item">
+                        <img src="assets/images/icon_more.jpg" alt="" class="section-action-icon">
+                        查看更多
+                    </div>
+                    <div class="section-action-item end">
+                        <img src="assets/images/icon_refresh.jpg" alt="" class="section-action-icon">
+                        换一批
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script>
+        
+
+$(function(){
+
+
+//  lat=39.93&116.40 
+//city_name: 'beijing',//默认值
+        var coords = {};
+
+        if (window.navigator.geolocation) {
+            var options = {
+                enableHighAccuracy: true,
+            };
+            window.navigator.geolocation.getCurrentPosition(handleSuccess, handleError, options);
+        } else {
+            //alert("浏览器不支持html5来获取地理位置信息");
+        }
+        
+        function handleSuccess(position){
+   
+              coords = {
+                lng:position.coords.longitude,
+                lat:position.coords.latitude
+              }
+
+        }
+        
+        function handleError(error){
+           // console.log(error)
+        }
+
+
+    $.ajax( {  
+      async:false,
+      type:'GET',
+      url:'http://117.143.221.190:8899/news/weather/now',
+      data:coords,  
+      type:'post',  
+      cache:false,  
+      dataType:'jsonp',  
+      jsonp: "jsoncallback",
+      contentType:"application/json;utf-8",
+      success:function(weather_data) {  
+        
+        $('#weather_temperature').text(weather_data.now.temperature+'°');
+
+        $('#weather_icon').attr('src','http://117.143.221.190:8899/news'+weather_data.now.weather_icon);
+
+        $('#weather_city').text(weather_data.location.name);
+
+        $('#weather_text').text(weather_data.now.text);
+
+        $('#weather').removeClass('weather_loading');
+
+      },  
+      error : function(jqXHR,textStatus,errorThrown) {  
+       
+        console.log(textStatus);  
+
+      }  
+    }); 
+
+
+})
+
+    </script>
+
+
+    </body>
+</html>
