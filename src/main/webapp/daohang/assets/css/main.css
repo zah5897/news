@@ -1,0 +1,106 @@
+html{background-color: #f6f6f6}
+a{color:#333;text-decoration: none}
+.list{list-style: none;margin:0;padding:0;}
+.mc{margin-left:auto;margin-right:auto;}
+
+
+.page-section{
+	border-bottom:1px solid #c8c7cc;
+	margin-bottom:10px;
+	background: #fff;
+	overflow: hidden;
+	position: relative;
+}
+.page-section.end{margin-bottom:1rem;}
+.page-section.nobd{border:0;}
+.section-tit{position:relative;color:#333;display: flex;justify-content:space-between;align-items: center;margin-bottom: .2rem;}
+.section-tit h3{font-weight:normal;margin:0;display: flex;align-items: center;}
+.section-icon{width: .5rem;margin-right: .5em}
+.section-tit .tip{color:#999;font-size: .8em;}
+
+.section-actions{border-top:1px solid #ccc;display: flex;justify-content: space-around;flex-direction: row}
+.section-action-item{flex:1;border-right:1px solid #ccc;display: flex;flex-direction: row;justify-content: center;margin:.2rem 0;padding:0;align-items: center;color:#333;font-size:26px;}
+.section-action-item.end{border:0;}
+.section-action-icon{width:30px;height: 30px;margin-right: 20px}
+
+
+#weather{
+	width:9rem;padding:.2rem 0;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.weather_loading{visibility: hidden;}
+#weather_icon{
+	width:.846rem;
+	margin:0 .2rem;
+	position: relative;
+	top:-.05rem;
+}
+#weather_temperature{
+	font-size: 1.6em;
+	color:#333;
+	font-weight: bold;
+}
+#weather_city{
+	font-size: 1.2em;
+	color:#333;
+	font-weight: bold;
+}
+#weather_text{
+	font-size: 1.2em;
+	color:#666;
+	margin-left: .2rem
+}
+
+#baiduSearch{
+	width:9rem;
+	margin-top: 1rem
+}
+
+#baiduSearch .logo{
+	display: block;
+	width:3.6rem; 
+}
+#baiduSearch form{position:relative;width:9rem;height:1.096rem;padding:0;border:1px solid #999;margin:.5rem auto;}
+#baiduSearch .keyword{width:6.935rem;height:1.096rem;text-indent:1em;line-height:1.096rem;padding:0;border:0;}
+#baiduSearch .submit{font-weight:bold;position:absolute;top:0;right:0;width:2.165rem;height:1.096rem;background: #3388ff;color:#FFF;border:0;padding:0;}
+
+#hotChannel{margin-bottom:.5rem;width:8.8rem;display: flex;flex-direction: row;justify-content: space-between;align-items: center}
+#hotChannel .item{text-align: center;display: block;text-decoration: none}
+#hotChannel .item-icon{width:.846rem;display: block;margin:0 auto;}
+#hotChannel .item-label{color:#333;line-height: 2;font-size: 28px}
+
+#hotNews {width:8.8rem;overflow: hidden;margin-top: 0.354rem;margin-bottom: 0.2rem}
+#hotNews .item{width:4.4rem;float:left; line-height: 2}
+#hotNews .item a{text-overflow: ellipsis;display: block;overflow:hidden;white-space:nowrap;font-size: 28px}
+
+
+#topNav{padding:0.08rem 0;width:9rem;}
+#topNav .item{display: flex;}
+#topNav .item-link{flex:1;display: flex;align-items:center;padding:0.1932rem 0;font-size:28px}
+#topNav .site-icon{width:0.8rem;height:0.8rem;display: inline-block;margin-right:.2em}
+
+
+#fastNav{padding:0.2rem 0;width:9rem; }
+.fastNav{display: flex;align-items: center;border-top:1px solid #c8c7cc;padding:0.2657rem 0;margin: 0;}
+.fastNav dt{float:left;font-size: 30px;color:#666;border-right:1px solid #c8c7cc;padding-right: .5em;margin-right:.5em}
+.fastNav dd{display: flex;align-items: center;flex:1;margin:0;}
+.fastNav dd a{flex:1;font-size: 30px}
+
+
+#toutiao{padding:0.2rem 0;width:9rem; }
+.toutiao{display: flex;align-items: center;border-top:1px solid #c8c7cc;padding:0.2657rem 0;margin: 0;}
+.toutiao .thumb{flex:1;}
+.toutiao .thumb img{display: block;width: 100%}
+.toutiao dd{font-size:28px;line-height: 1.5;flex:3;margin:0;padding-left: .2rem}
+.toutiao dd a{color:#333;}
+
+
+
+#video{padding:0.2rem 0;width:9rem;color:#333; }
+
+#videos{display: flex;flex-wrap:wrap;align-items: center;border-top:1px solid #c8c7cc;padding:0.2657rem 0;margin: 0}
+.video{width: 4.5rem;padding:0 .1rem;box-sizing: border-box;}
+.video .thumb{display: block;width: 4.2rem;}
+.video .title{padding:0.2rem 0;display: block;font-size: 1.2em}
