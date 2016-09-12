@@ -15,6 +15,7 @@
 	<context:component-scan base-package="com.zhan.app.news.controller" />
 
 <mvc:resources mapping="/weather_icon/**" location="/weather_icon/" />
+<mvc:resources mapping="/daohang/**" location="/daohang/" />
 
 
 
