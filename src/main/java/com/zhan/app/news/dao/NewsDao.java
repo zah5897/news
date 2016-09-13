@@ -50,6 +50,19 @@ public class NewsDao extends BaseDao {
 		return mongoTemplate.find(query, News.class);
 	}
 
+	
+	public List<?> list_random(String publish_time) {
+		Query query = new Query();
+		query.with(new Sort(new Order(Direction.DESC, "publish_time")));
+		query.limit(30);
+		if (!TextUtils.isEmpty(publish_time)) {
+			Criteria criteria = Criteria.where("publish_time").lt(publish_time);
+			query.addCriteria(criteria);
+		}
+		return mongoTemplate.find(query, News.class);
+	}
+	
+	
 	public NewsDetial find(String id) {
 		Query query = new Query();
 		Criteria criteria = Criteria.where("_id").is(id);

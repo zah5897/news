@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.zhan.app.common.News;
 import com.zhan.app.common.NewsDetial;
 import com.zhan.app.news.exception.ERROR;
 import com.zhan.app.news.service.NewsService;
@@ -30,21 +31,24 @@ public class NewsController {
 	private NewsService newsService;
 
 	@RequestMapping("list")
-	public ModelMap list(HttpServletRequest request, String publish_time, int count) {
-		if (count > 100) {
-			count = 20;
-		}
-		if (count <= 0) {
+	public ModelMap list(HttpServletRequest request, String publish_time, Integer count) {
+		int realCount = 0;
+
+		if (count == null) {
+			realCount = 20;
+		} else if (count > 100) {
+			realCount = 20;
+		} else if (count <= 0) {
 			return ResultUtil.getResultOKMap();
 		}
-		List news = newsService.listNews(publish_time, count);
+		List news = newsService.listNews(publish_time, realCount);
 		ModelMap result = ResultUtil.getResultOKMap();
 		result.put("news", news);
 		return result;
 	}
 
 	@RequestMapping("news")
-	public ModelMap news(HttpServletRequest request, String publish_time, int count) {
+	public ModelMap news(HttpServletRequest request, String publish_time, Integer count) {
 		return list(request, publish_time, count);
 	}
 
@@ -61,44 +65,4 @@ public class NewsController {
 		return result;
 	}
 
-	@RequestMapping("videos")
-	public void videos(HttpServletRequest request, HttpServletResponse response, String jsoncallback, Integer count) {
-		if (count == null || count < 0) {
-			count = 4;
-		}
-		String jsonText = "";
-		List videos = newsService.listVideos(count);
-		if (videos != null) {
-			jsonText = JSON.toJSONString(videos, true);
-		}
-		writeJsonP(response, jsoncallback, jsonText);
-	}
-
-	@RequestMapping("get_video_by_id")
-	public ModelMap videos(HttpServletRequest request, String id) {
-		if (TextUtils.isEmpty(id)) {
-			return ResultUtil.getResultMap(ERROR.ERR_FAILED.setNewText("视频id找不到"));
-		}
-		ModelMap result = ResultUtil.getResultOKMap();
-		result.put("video", newsService.findVideoById(id));
-		return result;
-	}
-
-	private void writeJsonP(HttpServletResponse response, String jsoncallback, String result) {
-		String resultString;
-		if(!TextUtils.isEmpty(jsoncallback)){
-			resultString = jsoncallback + "(" + result + ")";
-		}else{
-			resultString=result;
-		}
-		response.setContentType("text/json");
-		response.setCharacterEncoding("UTF-8");
-		try {
-			PrintWriter writer = response.getWriter();
-			writer.write(resultString);
-			writer.flush();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 }

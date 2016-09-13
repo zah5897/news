@@ -1,6 +1,8 @@
 package com.zhan.app.news.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 
@@ -32,6 +34,17 @@ public class NewsService {
 
 	public List<?> listNews(String publish_time, int limit) {
 		return newsDao.list(publish_time, limit);
+	}
+
+	public List<News> news_toutiao(int count) {
+		List<News> news = (List<News>) newsDao.list_random(null);
+		int size = news.size();
+		List<News> random = new ArrayList<News>();
+		Random ran = new Random();
+		for (int i = 0; i < count; i++) {
+			random.add(news.get(ran.nextInt(size)));
+		}
+		return random;
 	}
 
 	public NewsDetial findNews(String id) {
