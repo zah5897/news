@@ -50,7 +50,6 @@ public class NewsDao extends BaseDao {
 		return mongoTemplate.find(query, News.class);
 	}
 
-	
 	public List<?> list_random(String publish_time) {
 		Query query = new Query();
 		query.with(new Sort(new Order(Direction.DESC, "publish_time")));
@@ -61,8 +60,7 @@ public class NewsDao extends BaseDao {
 		}
 		return mongoTemplate.find(query, News.class);
 	}
-	
-	
+
 	public NewsDetial find(String id) {
 		Query query = new Query();
 		Criteria criteria = Criteria.where("_id").is(id);
@@ -76,6 +74,7 @@ public class NewsDao extends BaseDao {
 		query.limit(count);
 		return mongoTemplate.find(query, Video.class);
 	}
+
 	public Video findVideo(String id) {
 		Query query = new Query();
 		Criteria criteria = Criteria.where("_id").is(id);
