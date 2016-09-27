@@ -3,65 +3,24 @@
     <head>
         <meta charset="utf-8">
 
-        <!-- 通用渲染相关 -->
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><!--[if IE]><![endif]-->
-        <meta name="renderer" content="webkit" /><!-- Set render engine for 360 browser -->
-        <!--js dymantic <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="renderer" content="webkit" />
         <meta content="modeName=750-12" name="grid" />
 
-
-        <!-- 调试相关 可选 -->
-        <!--禁用缓存<meta http-equiv="Pragma" content="no-cache">-->
-        <!--<meta http-equiv="Cache-Control" content="no-siteapp" /> 转码申明：用百度打开网页可能会对其进行转码（比如贴广告），避免转码可添加如下meta -->
-
-
-        <!-- for old mobile device 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
-        <meta name="HandheldFriendly" content="true">
-        <meta name="MobileOptimized" content="320"><!-- 微软的老式浏览器 -->
-        <meta name="screen-orientation" content="portrait"><!-- uc强制竖屏 -->
-        <meta name="x5-orientation" content="portrait"><!-- QQ强制竖屏 -->
-        <meta name="full-screen" content="yes"><!-- UC强制全屏 -->
-        <meta name="x5-fullscreen" content="true"><!-- QQ强制全屏 -->
-        <meta name="browsermode" content="application"><!-- UC应用模式 -->
-        <meta name="x5-page-mode" content="app"><!-- QQ应用模式 -->
-        <meta name="msapplication-tap-highlight" content="no"><!-- windows phone 点击无高光 -->
-        <meta name="msapplication-TileColor" content="#000"/> <!-- Windows 8 磁贴颜色 -->
-        <meta name="msapplication-TileImage" content="apple-touch-icon.png"/> <!-- Windows 8 磁贴图标 -->
-        <meta name="mobile-agent" content="format=[wml|xhtml|html5]; url=url"><!-- 站点适配：主要用于PC-手机页的对应关系。 [wml|xhtml|html5]根据手机页的协议语言，选择其中一种；url="url" 后者代表当前PC页所对应的手机页URL，两者必须是一一对应关系。-->
-
-        <!-- for android and Chrome : Add to homescreen -->
-        <meta name="mobile-web-app-capable" content="yes">
-        <link rel="icon" sizes="192x192" href="apple-touch-icon.png">
-
-
-        <!-- for ios -->
-        <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- 启用 WebApp 全屏模式 伪装app -->
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /><!-- 隐藏状态栏/设置状态栏颜色 -->
-        <meta name="apple-mobile-web-app-title" content="标题"><!-- 添加到主屏后的标题 -->
-        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-        <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png">
         <meta content="telephone=no" name="format-detection" /><!-- 忽略数字自动识别为电话号码 -->
         <meta content="email=no" name="format-detection" /><!-- 忽略识别邮箱 -->
 
-
-
-
-        <title>BAIDU</title>
+        <title>浏览器</title>
         <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-        <!--屏幕适配 flexible-->
-        <script src="lib/flexible/build/flexible.debug.js"></script>
-        <script src="lib/flexible/build/makegrid.debug.js"></script>
+        <link rel="stylesheet" href="lib/flexible/build/flexible.css">
 
-        <link rel="stylesheet" href="lib/normalize-css/normalize.css">
+        <script src="lib/flexible/build/flexible.js"></script>
 
-
-        <!-- <script src="lib/modernizer/modernizr.js"></script>
-        <script src="assets/js/plugins.js"></script> -->
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="assets/js/main.js"></script>
 
 
-        <!-- main logic -->
-        <link rel="stylesheet" href="assets/css/global.css">
         <link rel="stylesheet" href="assets/css/main.css">
 
 
@@ -71,12 +30,13 @@
         <div class="page-section">
 
         
-            <div id="weather" class="mc weather_loading">
-                <span id="weather_temperature"></span>
-                <img id="weather_icon" src="http://117.143.221.190:8899/news/weather_icon/4.png" alt="">
-                <span id="weather_city"></span>
-                <span id="weather_text"></span>
-            </div>
+            <a href="http://www.weather.com.cn/weather/101020100.shtml" id="weather" class="mc weather_loading">
+                    <span id="weather_temperature"></span>
+                    <img id="weather_icon" src="http://117.143.221.190:8899/news/weather_icon/4.png" alt="">
+                    <span id="weather_city"></span>
+                    <span id="weather_text"></span>
+              
+            </a>
 
             <div id="baiduSearch" class="mc">
                 <img src="assets/images/baidu-logo.png" alt="" class="logo mc">
@@ -110,7 +70,8 @@
             </div>
 
 
-            <ul id="hotNews" class="list mc">
+            <ul id="hotNews" class="list mc hide">
+            <!--
                 <li class="item">
                     <a href="">iphone6侵权</a>
                 </li>
@@ -122,7 +83,7 @@
                 </li>
                 <li class="item">
                     <a href="">iphone6侵权</a>
-                </li>
+                </li>-->
             </div>
         </div>
 
@@ -144,7 +105,7 @@
                     <a href="http://m.budejie.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_neihan.jpg" alt="">段子</a>
                     <a href="http://www.bilibili.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_bilibili.jpg" alt="">动画</a>
                     <a href="http://m.ctrip.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_ctrip.jpg" alt="">携程</a>
-                    <a href="http://m.vip.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_ctrip.jpg" alt="">唯品会</a>
+                    <a href="http://m.vip.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_vip.jpg" alt="">唯品会</a>
                 </li>
                 
             </ul>
@@ -316,11 +277,12 @@
         </div>
 
         <div class="page-section">
-            <div id="toutiao" class="mc">
+            <div id="toutiao" class="mc hide">
                 <div class="section-tit">
                     <h3><img class="section-icon" src="assets/images/toutiao-icon.png" alt="">今日头条</h3>
                 </div>
-                <dl class="toutiao" class="list">
+                <div id="toutiaos">
+                <!--news placeholder <dl class="toutiao" class="list">
                     <dt class="thumb">
                         <img src="assets/images/demo/toutiao.jpg" alt="">
                     </dt>
@@ -335,13 +297,14 @@
                     <dd>
                         <a href="" title="">潘长江征战喜剧人 不服老获赞</a>
                     </dd>
-                </dl>
+                </dl>-->
+                </div>
                 <div class="section-actions">
-                    <div class="section-action-item">
+                    <a href="http://m.toutiao.com" class="section-action-item">
                         <img src="assets/images/icon_more.jpg" alt="" class="section-action-icon">
                         查看更多
-                    </div>
-                    <div class="section-action-item end">
+                    </a>
+                    <div onclick="fetchSomeNews();" class="section-action-item end">
                         <img src="assets/images/icon_refresh.jpg" alt="" class="section-action-icon">
                         换一批
                     </div>
@@ -349,44 +312,22 @@
             </div>
         </div>
 
-        <div class="page-section end">
-            <div id="video" class="mc">
+        <div class="page-section">
+            <div id="video" class="mc hide">
                 <div class="section-tit">
                     <h3><img class="section-icon" src="assets/images/budejie-icon.png" alt="">搞笑视频</h3>
                     <span class="tip">3213看过</span>
                 </div>
                 <div id="videos">
-                        <a class="video" href="" title="">
-                            <img class="thumb" src="assets/images/demo/toutiao.jpg" alt="">
-                            <span class="title">潘长江征战喜剧人 不服老获赞</span>
-                        </a>
-                        <a class="video" href="" title="">
-                            <img class="thumb" src="assets/images/demo/toutiao.jpg" alt="">
-                            <span class="title">潘长江征战喜剧人 不服老获赞</span>
-                        </a>
-                        <a class="video" href="" title="">
-                            <img class="thumb" src="assets/images/demo/toutiao.jpg" alt="">
-                            <span class="title">潘长江征战喜剧人 不服老获赞</span>
-                        </a>
-                        <a class="video" href="" title="">
-                            <img class="thumb" src="assets/images/demo/toutiao.jpg" alt="">
-                            <span class="title">潘长江征战喜剧人 不服老获赞</span>
-                        </a>
-                        <a class="video" href="" title="">
-                            <img class="thumb" src="assets/images/demo/toutiao.jpg" alt="">
-                            <span class="title">潘长江征战喜剧人 不服老获赞</span>
-                        </a>
-                        <a class="video" href="" title="">
-                            <img class="thumb" src="assets/images/demo/toutiao.jpg" alt="">
-                            <span class="title">潘长江征战喜剧人 不服老获赞</span>
-                        </a>
+
+            
                 </div>
                 <div class="section-actions">
                     <div class="section-action-item">
                         <img src="assets/images/icon_more.jpg" alt="" class="section-action-icon">
                         查看更多
                     </div>
-                    <div class="section-action-item end">
+                    <div onclick="fetchSomeVideos();" class="section-action-item end">
                         <img src="assets/images/icon_refresh.jpg" alt="" class="section-action-icon">
                         换一批
                     </div>
@@ -404,80 +345,8 @@
 
 
 
+    
 
-
-
-
-
-
-    <script src="lib/jquery/dist/jquery.min.js"></script>
-    <script>
-        
-
-$(function(){
-
-
-//  lat=39.93&116.40 
-//city_name: 'beijing',//默认值
-        var coords = {};
-
-        if (window.navigator.geolocation) {
-            var options = {
-                enableHighAccuracy: true,
-            };
-            window.navigator.geolocation.getCurrentPosition(handleSuccess, handleError, options);
-        } else {
-            //alert("浏览器不支持html5来获取地理位置信息");
-        }
-        
-        function handleSuccess(position){
-   
-              coords = {
-                lng:position.coords.longitude,
-                lat:position.coords.latitude
-              }
-
-        }
-        
-        function handleError(error){
-           // console.log(error)
-        }
-
-
-    $.ajax( {  
-      async:false,
-      type:'GET',
-      url:'http://117.143.221.190:8899/news/weather/now',
-      data:coords,  
-      type:'post',  
-      cache:false,  
-      dataType:'jsonp',  
-      jsonp: "jsoncallback",
-      contentType:"application/json;utf-8",
-      success:function(weather_data) {  
-        
-        $('#weather_temperature').text(weather_data.now.temperature+'°');
-
-        $('#weather_icon').attr('src','http://117.143.221.190:8899/news'+weather_data.now.weather_icon);
-
-        $('#weather_city').text(weather_data.location.name);
-
-        $('#weather_text').text(weather_data.now.text);
-
-        $('#weather').removeClass('weather_loading');
-
-      },  
-      error : function(jqXHR,textStatus,errorThrown) {  
-       
-        console.log(textStatus);  
-
-      }  
-    }); 
-
-
-})
-
-    </script>
 
 
     </body>

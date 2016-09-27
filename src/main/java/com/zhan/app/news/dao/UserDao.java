@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import com.zhan.app.common.DaoHangUser;
 import com.zhan.app.common.User;
 
 @Repository("userDao")
@@ -18,7 +19,10 @@ public class UserDao extends BaseDao {
 		mongoTemplate.save(user);
 		return user.getId();
 	}
-
+	public String saveDaoHangUser(DaoHangUser user) {
+		mongoTemplate.save(user);
+		return user.getId();
+	}
 	public long countByToken(String token) {
 		Query query = new Query();
 		Criteria criteria = Criteria.where("token").is(token);
@@ -61,5 +65,7 @@ public class UserDao extends BaseDao {
 		query.addCriteria(criteria);
 		return mongoTemplate.findOne(query, User.class);
 	}
+
+
 
 }

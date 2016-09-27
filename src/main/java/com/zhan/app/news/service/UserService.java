@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.zhan.app.common.DaoHangUser;
 import com.zhan.app.common.User;
 import com.zhan.app.news.dao.UserDao;
 
@@ -14,6 +15,10 @@ public class UserService {
 
 	public String insert(User user) {
 		return userDao.save(user);
+	}
+
+	public String insertDaoHangUser(DaoHangUser user) {
+		return userDao.saveDaoHangUser(user);
 	}
 
 	public long countToken(String token) {
@@ -31,16 +36,17 @@ public class UserService {
 	public void deleteByToken(String token) {
 		userDao.deleteByToken(token);
 	}
-	
-	public User getUser(String deviceId,String token){
-		return userDao.getUser(deviceId,token);
+
+	public User getUser(String deviceId, String token) {
+		return userDao.getUser(deviceId, token);
 	}
-	public User getUserByDevice(String deviceId){
+
+	public User getUserByDevice(String deviceId) {
 		return userDao.getUserByDevice(deviceId);
 	}
-	public User getUserByToken(String token){
+
+	public User getUserByToken(String token) {
 		return userDao.getUserByToken(token);
 	}
-	
- 
+
 }

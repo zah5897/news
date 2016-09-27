@@ -8,13 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.zhan.app.common.DaoHangUser;
 import com.zhan.app.common.News;
 import com.zhan.app.common.NewsDetial;
+import com.zhan.app.common.Video;
+import com.zhan.app.news.exception.ERROR;
+import com.zhan.app.news.service.DaoHangUserService;
 import com.zhan.app.news.service.NewsService;
 import com.zhan.app.news.service.WeatherService;
+import com.zhan.app.news.util.ResultUtil;
 import com.zhan.app.news.util.TextUtils;
 
 @Controller
@@ -25,6 +33,35 @@ public class DaoHangController {
 	private WeatherService weatherService;
 	@Resource
 	private NewsService newsService;
+
+	@Resource
+	private DaoHangUserService daoHanguserService;
+
+	int cacheCount = 0;
+
+	@RequestMapping("add_token")
+	@ResponseBody
+	public ModelMap add_token(HttpServletRequest request, DaoHangUser user) {
+		if (TextUtils.isEmpty(user.getDeviceId()) || TextUtils.isEmpty(user.getToken())) {
+			return ResultUtil.getResultMap(ERROR.ERR_PARAM);
+		}
+
+		long count = daoHanguserService.countDevice(user.getDeviceId());
+		if (count > 0) {
+			daoHanguserService.deleteByDetive(user.getDeviceId());
+		}
+		count = daoHanguserService.countToken(user.getToken());
+		if (count > 0) {
+			daoHanguserService.deleteByToken(user.getToken());
+		}
+
+		String zh_cn = request.getParameter("zh-cn");
+		user.setZh_cn(zh_cn);
+		String id = daoHanguserService.insert(user);
+		ModelMap result = ResultUtil.getResultOKMap();
+		result.put("user_id", id);
+		return result;
+	}
 
 	@RequestMapping(value = "news_toutiao", produces = "text/html;charset=UTF-8")
 	public void news_toutiao(HttpServletRequest request, HttpServletResponse response, String jsoncallback,
@@ -58,12 +95,22 @@ public class DaoHangController {
 		if (count == null || count < 0) {
 			count = 4;
 		}
-		String jsonText = "";
-		List videos = newsService.listVideos(count);
-		if (videos != null) {
-			jsonText = JSON.toJSONString(videos, true);
+		long cache_count = daoHanguserService.getBrowseCount();
+		long realCount = cache_count + cacheCount;
+		if (cacheCount > 50) {
+			daoHanguserService.setBrowseCount(realCount);
+			cacheCount = 0;
 		}
-		writeJsonP(response, jsoncallback, jsonText);
+		
+		List<Video> videos = newsService.listVideosRandom(count);
+		JSONObject result = new JSONObject();
+		
+		if (videos != null) {
+			result.put("videos", videos);
+		}
+		result.put("browse_count", realCount);
+		cacheCount++;
+		writeJsonP(response, jsoncallback, result.toJSONString());
 	}
 
 	private void writeJsonP(HttpServletResponse response, String jsoncallback, String result) {

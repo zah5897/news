@@ -2,7 +2,7 @@ html{background-color: #f6f6f6}
 a{color:#333;text-decoration: none}
 .list{list-style: none;margin:0;padding:0;}
 .mc{margin-left:auto;margin-right:auto;}
-
+.hide{display: none}
 
 .page-section{
 	border-bottom:1px solid #c8c7cc;
@@ -14,7 +14,7 @@ a{color:#333;text-decoration: none}
 .page-section.end{margin-bottom:1rem;}
 .page-section.nobd{border:0;}
 .section-tit{position:relative;color:#333;display: flex;justify-content:space-between;align-items: center;margin-bottom: .2rem;}
-.section-tit h3{font-weight:normal;margin:0;display: flex;align-items: center;}
+.section-tit h3{font-weight:normal;margin:0;display: flex;align-items: center;font-size: 30px}
 .section-icon{width: .5rem;margin-right: .5em}
 .section-tit .tip{color:#999;font-size: .8em;}
 
@@ -29,6 +29,7 @@ a{color:#333;text-decoration: none}
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
+	text-decoration: none
 }
 .weather_loading{visibility: hidden;}
 #weather_icon{
@@ -45,11 +46,10 @@ a{color:#333;text-decoration: none}
 #weather_city{
 	font-size: 1.2em;
 	color:#333;
-	font-weight: bold;
 }
 #weather_text{
 	font-size: 1.2em;
-	color:#666;
+	color:#333;
 	margin-left: .2rem
 }
 
@@ -63,8 +63,8 @@ a{color:#333;text-decoration: none}
 	width:3.6rem; 
 }
 #baiduSearch form{position:relative;width:9rem;height:1.096rem;padding:0;border:1px solid #999;margin:.5rem auto;}
-#baiduSearch .keyword{width:6.935rem;height:1.096rem;text-indent:1em;line-height:1.096rem;padding:0;border:0;}
-#baiduSearch .submit{font-weight:bold;position:absolute;top:0;right:0;width:2.165rem;height:1.096rem;background: #3388ff;color:#FFF;border:0;padding:0;}
+#baiduSearch .keyword{width:6.935rem;height:1.096rem;text-indent:1em;line-height:1.096rem;padding:0;border:0;font-size: 28px}
+#baiduSearch .submit{position:absolute;top:0;right:0;width:2.165rem;height:1.096rem;background: #3388ff;color:#FFF;border:0;padding:0;font-size: 28px}
 
 #hotChannel{margin-bottom:.5rem;width:8.8rem;display: flex;flex-direction: row;justify-content: space-between;align-items: center}
 #hotChannel .item{text-align: center;display: block;text-decoration: none}
@@ -96,11 +96,13 @@ a{color:#333;text-decoration: none}
 .toutiao dd{font-size:28px;line-height: 1.5;flex:3;margin:0;padding-left: .2rem}
 .toutiao dd a{color:#333;}
 
-
+#toutiaos.loading{opacity: .5}
 
 #video{padding:0.2rem 0;width:9rem;color:#333; }
 
-#videos{display: flex;flex-wrap:wrap;align-items: center;border-top:1px solid #c8c7cc;padding:0.2657rem 0;margin: 0}
+#videos{display: flex;flex-wrap:wrap;align-items: flex-start;justify-content:flex-start;border-top:1px solid #c8c7cc;padding:0.2657rem 0;margin: 0}
 .video{width: 4.5rem;padding:0 .1rem;box-sizing: border-box;}
 .video .thumb{display: block;width: 4.2rem;}
 .video .title{padding:0.2rem 0;display: block;font-size: 1.2em}
+
+#videos.loading{opacity: .5}
