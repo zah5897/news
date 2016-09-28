@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import com.zhan.app.common.DaoHangUser;
-import com.zhan.app.common.User;
 
 @Repository("daoHanguserDao")
 public class DaoHangUserDao extends BaseDao {

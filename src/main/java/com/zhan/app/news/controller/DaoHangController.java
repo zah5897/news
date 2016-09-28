@@ -54,9 +54,6 @@ public class DaoHangController {
 		if (count > 0) {
 			daoHanguserService.deleteByToken(user.getToken());
 		}
-
-		String zh_cn = request.getParameter("zh-cn");
-		user.setZh_cn(zh_cn);
 		String id = daoHanguserService.insert(user);
 		ModelMap result = ResultUtil.getResultOKMap();
 		result.put("user_id", id);
@@ -101,10 +98,10 @@ public class DaoHangController {
 			daoHanguserService.setBrowseCount(realCount);
 			cacheCount = 0;
 		}
-		
+
 		List<Video> videos = newsService.listVideosRandom(count);
 		JSONObject result = new JSONObject();
-		
+
 		if (videos != null) {
 			result.put("videos", videos);
 		}

@@ -35,13 +35,15 @@ public class NewsController {
 		int realCount = 0;
 
 		if (count == null) {
-			realCount = 20;
+			realCount = 10;
 		} else if (count > 100) {
 			realCount = 20;
 		} else if (count <= 0) {
 			return ResultUtil.getResultOKMap();
+		} else {
+			realCount = count;
 		}
-		List news = newsService.listNews(publish_time, realCount);
+		List<?> news = newsService.listNews(publish_time, realCount);
 		ModelMap result = ResultUtil.getResultOKMap();
 		result.put("news", news);
 		return result;
