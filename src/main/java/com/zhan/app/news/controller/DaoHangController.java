@@ -77,6 +77,24 @@ public class DaoHangController {
 		writeJsonP(response, jsoncallback, jsonText);
 	}
 
+	
+	@RequestMapping(value = "news_baidu", produces = "text/html;charset=UTF-8")
+	public void news_baidu(HttpServletRequest request, HttpServletResponse response, String jsoncallback,
+			String publish_time, Integer count) {
+
+		if (count == null || count <= 0) {
+			count = 10;
+		} else if (count > 50) {
+			count = 20;
+		}
+
+		List<News> toutiao = newsService.news_baidu(count);
+
+		String jsonText = "";
+		jsonText = JSON.toJSONString(toutiao, true);
+		writeJsonP(response, jsoncallback, jsonText);
+	}
+	
 	@RequestMapping(value = "news_detial", produces = "text/html;charset=UTF-8")
 	public void news_detial(HttpServletRequest request, HttpServletResponse response, String jsoncallback, String id) {
 		NewsDetial news = newsService.findNews(id);

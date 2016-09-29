@@ -38,7 +38,17 @@ public class NewsService {
 	}
 
 	public List<News> news_toutiao(int count) {
-		List<News> news = (List<News>) newsDao.list_random(null);
+		List<News> news = (List<News>) newsDao.list_random_toutiao(null);
+		int size = news.size();
+		List<News> random = new ArrayList<News>();
+		Random ran = new Random();
+		for (int i = 0; i < count; i++) {
+			random.add(news.get(ran.nextInt(size)));
+		}
+		return random;
+	}
+	public List<News> news_baidu(int count) {
+		List<News> news = (List<News>) newsDao.list_random_baidu(null);
 		int size = news.size();
 		List<News> random = new ArrayList<News>();
 		Random ran = new Random();
