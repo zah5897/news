@@ -51,17 +51,14 @@ public class IPUtil {
 	}
 
 	public static String getCityName(String ip) {
-		String city_name_url = "http://ip.taobao.com/service/getIpInfo.php?ip=" + ip;
+		String city_name_url = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=" + ip;
 
 		String result = HttpUtil.sendGet(city_name_url, null);
 		String cityName = null;
 		if (!TextUtils.isEmpty(result)) {
 			JSONObject address = JSONObject.parseObject(result);
 			if (address != null) {
-				JSONObject cityObj = address.getJSONObject("data");
-				if (cityObj != null) {
-					cityName = cityObj.getString("city");
-				}
+					cityName = address.getString("city");
 			}
 		}
 		return cityName;
