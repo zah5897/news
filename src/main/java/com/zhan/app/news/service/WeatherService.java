@@ -5,11 +5,13 @@ import java.net.URLEncoder;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.zhan.app.news.controller.NewsController;
 import com.zhan.app.news.util.HttpUtil;
 import com.zhan.app.news.util.IPUtil;
 import com.zhan.app.news.util.RedisKeys;
@@ -29,33 +31,35 @@ public class WeatherService {
 	public static final String WEATHER_URL = "https://api.thinkpage.cn/v3/weather/now.json";
 	@Resource
 	protected RedisTemplate<String, String> redisTemplate;
+	private static Logger log = Logger.getLogger(WeatherService.class);
 
 	public JSONObject getWeather(String param) {
 		String enCity = null;
 		try {
 			enCity = URLEncoder.encode(param, "utf-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String paramStr = "key=" + SECRET + "&location=" + enCity + "&language=zh-Hans&unit=c";
-		String result = HttpUtil.sendGet(WEATHER_URL, paramStr);
-		if (!TextUtils.isEmpty(result)) {
-			JSONObject resultObj = JSONObject.parseObject(result);
-			if (resultObj != null) {
-				JSONArray locationArray = resultObj.getJSONArray("results");
 
-				if (locationArray != null && locationArray.size() > 0) {
-					JSONObject weather = locationArray.getJSONObject(0);
-					JSONObject now = weather.getJSONObject("now");
-					now.put("weather_icon", "/weather_icon/" + now.getString("code") + ".png");
-					now.put("pm_25", getPm25(enCity));
-					weather.put("now", now);
-					return weather;
+			String paramStr = "key=" + SECRET + "&location=" + enCity + "&language=zh-Hans&unit=c";
+			String result = HttpUtil.sendGet(WEATHER_URL, paramStr);
+			if (!TextUtils.isEmpty(result)) {
+				JSONObject resultObj = JSONObject.parseObject(result);
+				if (resultObj != null) {
+					JSONArray locationArray = resultObj.getJSONArray("results");
+
+					if (locationArray != null && locationArray.size() > 0) {
+						JSONObject weather = locationArray.getJSONObject(0);
+						JSONObject now = weather.getJSONObject("now");
+						now.put("weather_icon", "/weather_icon/" + now.getString("code") + ".png");
+						now.put("pm_25", getPm25(enCity));
+						weather.put("now", now);
+						return weather;
+					}
+
 				}
 
 			}
-
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			log.error(e);
 		}
 		return null;
 	}
@@ -73,12 +77,21 @@ public class WeatherService {
 					long cacheTime = Long.parseLong(timeObj.toString());
 					// 在2小时内直接返回
 					if (time - cacheTime < TIME) {
-						return JSONObject.parseObject(cacheWeather.toString());
+						
+						JSONObject cache=JSONObject.parseObject(cacheWeather.toString());
+						cache.put("c", "1");
+						return cache;
 					}
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error(e);
+			try{
+			redisTemplate.opsForHash().delete(RedisKeys.KEY_WEATHER_DATA, cityName);
+			}catch(Exception er){
+				
+			}
 		}
 		return null;
 	}
@@ -89,7 +102,7 @@ public class WeatherService {
 			redisTemplate.opsForHash().put(RedisKeys.KEY_WEATHER_TIME, cityName,
 					String.valueOf(System.currentTimeMillis() / 1000));
 		} catch (Exception e) {
-
+			log.error(e);
 		}
 	}
 
@@ -106,32 +119,9 @@ public class WeatherService {
 					return stations.getJSONObject(0).getString("pm2_5");
 				}
 			} catch (Exception e) {
-
+				log.error(e);
 			}
 		}
 		return "";
-	}
-
-	public static void main(String[] args) throws UnsupportedEncodingException {
-
-		String city = IPUtil.getCityName("117.143.221.190");
-		String lcity = IPUtil.getCityNameByLatLng("31.22", "121.48");// 121.48
-																		// 加0小时5分55秒
-																		// 31.22
-
-		System.out.println(city);
-		System.out.println(lcity);
-		System.out.println(city.equals(lcity));
-
-		String code = TextUtils.getEncoding(city);
-
-		String newCity = new String(city.getBytes(), "utf-8");
-		System.out.println(newCity);
-
-		String enCity = URLEncoder.encode(newCity);
-		System.out.println(enCity);
-
-		JSONObject result = new WeatherService().getWeather("上海市");
-		System.out.println(result.toJSONString());
 	}
 }

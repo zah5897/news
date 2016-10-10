@@ -54,7 +54,7 @@ public class NewsDao extends BaseDao {
 		Query query = new Query();
 		query.with(new Sort(new Order(Direction.DESC, "publish_time")));
 		
-		query.addCriteria(Criteria.where("type").lt("0"));
+		query.addCriteria(Criteria.where("type").is(0));
 		
 		query.limit(30);
 		if (!TextUtils.isEmpty(publish_time)) {
@@ -66,7 +66,7 @@ public class NewsDao extends BaseDao {
 	public List<?> list_random_baidu(String publish_time) {
 		Query query = new Query();
 		query.with(new Sort(new Order(Direction.DESC, "publish_time")));
-		query.addCriteria(Criteria.where("type").lt("1"));
+		query.addCriteria(Criteria.where("type").is(1));
 		query.limit(30);
 		if (!TextUtils.isEmpty(publish_time)) {
 			Criteria criteria = Criteria.where("publish_time").lt(publish_time);

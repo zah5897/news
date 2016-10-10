@@ -1,353 +1,324 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
 
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta name="renderer" content="webkit" />
-        <meta content="modeName=750-12" name="grid" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
 
-        <meta content="telephone=no" name="format-detection" /><!-- 忽略数字自动识别为电话号码 -->
-        <meta content="email=no" name="format-detection" /><!-- 忽略识别邮箱 -->
+    <meta content="telephone=no" name="format-detection"/><!-- 忽略数字自动识别为电话号码 -->
+    <meta content="email=no" name="format-detection"/><!-- 忽略识别邮箱 -->
 
-        <title>浏览器</title>
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>浏览器</title>
 
-        <link rel="stylesheet" href="lib/flexible/build/flexible.css">
+    <link rel="stylesheet" href="assets/css/flexible.css">
 
-        <script src="lib/flexible/build/flexible.js"></script>
+    <script src="assets/js/flexible.debug.js"></script>
 
-    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/main.js"></script>
 
 
-        <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/main.css">
 
 
-    </head>
-    <body>
+</head>
+<body>
 
-        <div class="page-section">
+<div class="page-section">
 
-        
-            <a href="http://www.weather.com.cn/weather/101020100.shtml" id="weather" class="mc weather_loading">
-                    <span id="weather_temperature"></span>
-                    <img id="weather_icon" src="http://117.143.221.190:8899/news/weather_icon/4.png" alt="">
-                    <span id="weather_city"></span>
-                    <span id="weather_text"></span>
-              
+
+    <div id="weather_placeholder">
+
+    </div>
+
+    <div id="baiduSearch" class="mc">
+        <img src="assets/images/baidu-logo.png" alt="" class="logo mc">
+        <form action="http://m.baidu.com/s" method="GET">
+            <input type="text" name="word" placeholder="请输入搜索内容" class="keyword"/>
+            <button type="submit" class="submit">百度一下</button>
+        </form>
+    </div>
+
+    <div id="hotChannel" class="mc">
+        <a href="http://m.toutiao.com" class="item">
+            <img class=item-icon src="assets/images/chn-ico-1.png" alt=""/>
+            <span class="item-label">新闻</span>
+        </a>
+        <a href="http://m.qidian.com" class="item">
+            <img class=item-icon src="assets/images/chn-ico-2.png" alt=""/>
+            <span class="item-label">小说</span>
+        </a>
+        <a href="http://tv.youku.com" class="item">
+            <img class=item-icon src="assets/images/chn-ico-3.png" alt=""/>
+            <span class="item-label">视频</span>
+        </a>
+        <a href="http://m.budejie.com" class="item">
+            <img class=item-icon src="assets/images/chn-ico-4.png" alt=""/>
+            <span class="item-label">搞笑</span>
+        </a>
+        <a href="http://3g.ganji.com" class="item">
+            <img class=item-icon src="assets/images/chn-ico-5.png" alt=""/>
+            <span class="item-label">生活</span>
+        </a>
+    </div>
+
+    <ul id="hotNews" class="list mc hide">
+
+    </ul>
+
+</div>
+
+<div class="page-section nobd">
+    <ul id="topNav" class="list mc">
+        <li class="item">
+            <a href="http://m.baidu.com" class="item-link"><img class="site-icon"
+                                                                src="assets/images/topnav_icon_baidu.jpg" alt="">百度</a>
+            <a href="http://info.3g.qq.com" class="item-link"><img class="site-icon"
+                                                                   src="assets/images/topnav_icon_tencent.jpg" alt="">腾讯</a>
+            <a href="http://sina.cn" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_sina.jpg"
+                                                            alt="">新浪</a>
+            <a href="http://3g.163.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_163.jpg"
+                                                               alt="">网易</a>
+        </li>
+        <li class="item">
+            <a href="http://m.taobao.com" class="item-link"><img class="site-icon"
+                                                                 src="assets/images/topnav_icon_taobao.jpg"
+                                                                 alt="">淘宝</a>
+            <a href="http://www.tmall.com" class="item-link"><img class="site-icon"
+                                                                  src="assets/images/topnav_icon_tmall.jpg"
+                                                                  alt="">天猫</a>
+            <a href="http://m.jd.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_jd.jpg"
+                                                             alt="">京东</a>
+            <a href="http://m.suning.com" class="item-link"><img class="site-icon"
+                                                                 src="assets/images/topnav_icon_suning.jpg"
+                                                                 alt="">苏宁</a>
+        </li>
+        <li class="item">
+            <a href="http://m.budejie.com" class="item-link"><img class="site-icon"
+                                                                  src="assets/images/topnav_icon_neihan.jpg"
+                                                                  alt="">段子</a>
+            <a href="http://www.bilibili.com" class="item-link"><img class="site-icon"
+                                                                     src="assets/images/topnav_icon_bilibili.jpg"
+                                                                     alt="">动画</a>
+            <a href="http://m.ctrip.com" class="item-link"><img class="site-icon"
+                                                                src="assets/images/topnav_icon_ctrip.jpg" alt="">携程</a>
+            <a href="http://m.vip.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_vip.jpg"
+                                                              alt="">唯品会</a>
+        </li>
+
+    </ul>
+</div>
+
+<div class="page-section">
+    <div id="fastNav" class="mc">
+        <div class="section-tit">
+            <h3><img class="section-icon" src="assets/images/fastnav-icon.png" alt="">快速导航</h3>
+        </div>
+        <dl class="fastNav">
+            <dt class="label">名站</dt>
+            <dd>
+                <a href="http://info.3g.qq.com" title="">腾讯</a>
+                <a href="http://3g.163.com" title="">网易</a>
+                <a href="http://sina.cn" title="">新浪</a>
+                <a href="http://m.ctrip.com" title="">携程</a>
+            </dd>
+        </dl>
+        <dl class="fastNav">
+            <dt class="label">新闻</dt>
+            <dd>
+                <a href="http://m.toutiao.com" title="">奇闻</a>
+                <a href="http://m.sohu.com" title="">搜狐</a>
+                <a href="http://i.ifeng.com" title="">凤凰</a>
+                <a href="http://m.huanqiu.com" title="">环球</a>
+            </dd>
+        </dl>
+        <dl class="fastNav">
+            <dt class="label">视频</dt>
+            <dd>
+                <a href="http://tv.youku.com" title="">优酷</a>
+                <a href="http://www.tudou.com" title="">土豆</a>
+                <a href="http://m.le.com" title="">乐视</a>
+                <a href="http://m.iqiyi.com" title="">爱奇艺</a>
+            </dd>
+        </dl>
+        <dl class="fastNav">
+            <dt class="label">购物</dt>
+            <dd>
+                <a href="http://m.taobao.com" title="">淘宝</a>
+                <a href="http://www.tmall.com" title="">天猫</a>
+                <a href="http://m.dangdang.com" title="">当当</a>
+                <a href="http://m.vip.com" title="">唯品会</a>
+            </dd>
+        </dl>
+        <dl class="fastNav">
+            <dt class="label">商城</dt>
+            <dd>
+                <a href="http://m.jd.com" title="">京东</a>
+                <a href="http://m.suning.com" title="">苏宁</a>
+                <a href="http://m.yhd.com" title="">1号店</a>
+                <a href="http://www.amazon.cn" title="">亚马逊</a>
+            </dd>
+        </dl>
+        <dl class="fastNav">
+            <dt class="label">体育</dt>
+            <dd>
+                <a href="http://sports.sina.cn" title="">新浪</a>
+                <a href="http://m.hupu.com/nb" title="">NBA</a>
+                <a href="http://m.sohu.com" title="">搜狐</a>
+                <a href="http://www.lottery.gov.cn" title="">彩票</a>
+            </dd>
+        </dl>
+        <dl class="fastNav">
+            <dt class="label">汽车</dt>
+            <dd>
+                <a href="http://m.autohome.com.cn" title="">之家</a>
+                <a href="http://www.xincheping.com" title="">新车</a>
+                <a href="http://m.58che.comm" title="">58车</a>
+                <a href="https://m.renrenche.com" title="">二手车</a>
+            </dd>
+        </dl>
+        <dl class="fastNav">
+            <dt class="label">旅游</dt>
+            <dd>
+                <a href="http://m.ctrip.com" title="">携程</a>
+                <a href="http://m.tuniu.com" title="">途牛</a>
+                <a href="http://touch.qunar.com" title="">去哪儿</a>
+                <a href="http://m.lvmama.com" title="">驴妈妈</a>
+            </dd>
+        </dl>
+        <dl class="fastNav">
+            <dt class="label">直播</dt>
+            <dd>
+                <a href="http://www.inke.com/hotlive_list.html" title="">映客</a>
+                <a href="http://m.douyu.com" title="">斗鱼</a>
+                <a href="http://www.zhibo8.cc" title="">直播吧</a>
+                <a href="http://m.panda.tv" title="">熊猫直播</a>
+            </dd>
+        </dl>
+
+        <dl class="fastNav">
+            <dt class="label">笑话</dt>
+            <dd>
+                <a href="http://m.budejie.com" title="">不得姐</a>
+                <a href="http://m.baozou.com/all/hot" title="">暴走</a>
+                <a href="http://m.neihanshequ.com" title="">段子</a>
+                <a href="http://www.qiushibaike.com" title="">糗百</a>
+            </dd>
+        </dl>
+
+        <dl class="fastNav">
+            <dt class="label">财经</dt>
+            <dd>
+                <a href="http://wap.eastmoney.com/iphone/default.shtml" title="">东财</a>
+                <a href="http://finance.sina.com.cn" title="">新浪</a>
+                <a href="http://m.sohu.com/c/5/?_trans_=000115_3w" title="">搜狐</a>
+                <a href="http://3g.cnfol.com" title="">中金</a>
+            </dd>
+        </dl>
+
+        <dl class="fastNav" class="list mc">
+            <dt class="label">军事</dt>
+            <dd>
+                <a href="http://m.miercn.com" title="">米尔</a>
+                <a href="http://mil.sina.cn" title="">新浪</a>
+                <a href="http://mil.eastday.com" title="">东方</a>
+                <a href="http://imil.ifeng.com" title="">凤凰</a>
+            </dd>
+        </dl>
+
+        <dl class="fastNav">
+            <dt class="label">生活</dt>
+            <dd>
+                <a href="http://m.58.com" title="">58</a>
+                <a href="http://3g.ganji.com" title="">赶集</a>
+                <a href="http://m.jia.com" title="">齐家</a>
+                <a href="http://m.to8to.com" title="">土巴兔</a>
+            </dd>
+        </dl>
+        <dl class="fastNav">
+            <dt class="label">小说</dt>
+            <dd>
+                <a href="http://ubook.qq.com" title="">QQ</a>
+                <a href="http://m.qidian.com" title="">起点</a>
+                <a href="http://m.sxcnw.net" title="">书香</a>
+                <a href="http://m.hongxiu.com" title="">爱阅读</a>
+            </dd>
+        </dl>
+        <dl class="fastNav">
+            <dt class="label">团购</dt>
+            <dd>
+                <a href="https://m.nuomi.com" title="">糯米</a>
+                <a href="http://i.meituan.com" title="">美团</a>
+                <a href="http://m.dianping.com" title="">大众</a>
+                <a href="http://jhs.m.taobao.com" title="">聚划算</a>
+            </dd>
+        </dl>
+        <dl class="fastNav">
+            <dt class="label">社区</dt>
+            <dd>
+                <a href="http://www.tianya.cn/m" title="">天涯</a>
+                <a href="http://m.zhihu.com" title="">知乎</a>
+                <a href="http://m.douban.com" title="">豆瓣</a>
+                <a href="http://m.weibo.cn/p/102803?wm=5091_0026" title="">微博</a>
+            </dd>
+        </dl>
+        <dl class="fastNav">
+            <dt class="label">交友</dt>
+            <dd>
+                <a href="http://v.jiayuan.com" title="">世纪</a>
+                <a href="http://i.baihe.com" title="">百合</a>
+                <a href="http://m.zhenai.com" title="">珍爱</a>
+                <a href="http://3g.yuehui.163.com" title="">同城</a>
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div id="toutiao" class="page-section hide">
+    <div class="wrapper mc">
+        <div class="section-tit">
+            <h3><img class="section-icon" src="assets/images/toutiao-icon.png" alt="">今日头条</h3>
+        </div>
+        <div id="toutiaos">
+
+        </div>
+        <div class="section-actions">
+            <a href="http://m.toutiao.com" class="section-action-item">
+                <img src="assets/images/icon_more.jpg" alt="" class="section-action-icon">
+                查看更多
             </a>
-
-            <div id="baiduSearch" class="mc">
-                <img src="assets/images/baidu-logo.png" alt="" class="logo mc">
-                <form action="http://m.baidu.com/s" method="GET">
-                    <input type="text" name="word" placeholder="请输入搜索内容" class="keyword" />
-                    <button type="submit" class="submit">百度一下</button>
-                </form>
-            </div>
-
-            <div id="hotChannel" class="mc">
-                <a href="http://m.toutiao.com" class="item">
-                    <img class=item-icon src="assets/images/chn-ico-1.png" alt="" />
-                    <span class="item-label">新闻</span>
-                </a>
-                <a href="http://m.qidian.com" class="item">
-                    <img class=item-icon src="assets/images/chn-ico-2.png" alt="" />
-                    <span class="item-label">小说</span>
-                </a>
-                <a href="http://tv.youku.com" class="item">
-                    <img class=item-icon src="assets/images/chn-ico-3.png" alt="" />
-                    <span class="item-label">视频</span>
-                </a>
-                <a href="http://m.budejie.com" class="item">
-                    <img class=item-icon src="assets/images/chn-ico-4.png" alt="" />
-                    <span class="item-label">搞笑</span>
-                </a>
-                <a href="http://3g.ganji.com" class="item">
-                    <img class=item-icon src="assets/images/chn-ico-5.png" alt="" />
-                    <span class="item-label">生活</span>
-                </a>
-            </div>
-
-
-            <ul id="hotNews" class="list mc hide">
-            <!--
-                <li class="item">
-                    <a href="">iphone6侵权</a>
-                </li>
-                <li class="item">
-                    <a href="">途牛跟团自助游自助游自助游</a>
-                </li>
-                <li class="item">
-                    <a href="">iphone6侵权</a>
-                </li>
-                <li class="item">
-                    <a href="">iphone6侵权</a>
-                </li>-->
+            <div onclick="fetchSomeNews();" class="section-action-item end">
+                <img src="assets/images/icon_refresh.jpg" alt="" class="section-action-icon">
+                换一批
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="page-section nobd">
-            <ul id="topNav" class="list mc">
-                <li class="item">
-                    <a href="http://m.baidu.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_baidu.jpg" alt="">百度</a>
-                    <a href="http://info.3g.qq.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_tencent.jpg" alt="">腾讯</a>
-                    <a href="http://sina.cn" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_sina.jpg" alt="">新浪</a>
-                    <a href="http://3g.163.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_163.jpg" alt="">网易</a>
-                </li>
-                <li class="item">
-                    <a href="http://m.taobao.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_taobao.jpg" alt="">淘宝</a>
-                    <a href="http://www.tmall.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_tmall.jpg" alt="">天猫</a>
-                    <a href="http://m.jd.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_jd.jpg" alt="">京东</a>
-                    <a href="http://m.suning.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_suning.jpg" alt="">苏宁</a>
-                </li>
-                <li class="item">
-                    <a href="http://m.budejie.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_neihan.jpg" alt="">段子</a>
-                    <a href="http://www.bilibili.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_bilibili.jpg" alt="">动画</a>
-                    <a href="http://m.ctrip.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_ctrip.jpg" alt="">携程</a>
-                    <a href="http://m.vip.com" class="item-link"><img class="site-icon" src="assets/images/topnav_icon_vip.jpg" alt="">唯品会</a>
-                </li>
-                
-            </ul>
+<div id="video" class="page-section hide">
+    <div class="wrapper mc">
+        <div class="section-tit">
+            <h3><img class="section-icon" src="assets/images/budejie-icon.png" alt="">搞笑视频</h3>
+            <span class="tip"><span id="video_count">3213</span>看过</span>
         </div>
+        <div id="videos">
 
-        <div class="page-section">
-            <div id="fastNav" class="mc">
-                <div class="section-tit">
-                    <h3><img class="section-icon" src="assets/images/fastnav-icon.png" alt="">快速导航</h3>
-                </div>
-                <dl class="fastNav" class="list">
-                    <dt class="label">名站</dt>
-                    <dd>
-                        <a href="http://info.3g.qq.com" title="">腾讯</a>
-                        <a href="http://3g.163.com" title="">网易</a>
-                        <a href="http://sina.cn" title="">新浪</a>
-                        <a href="http://m.ctrip.com" title="">携程</a>
-                    </dd>
-                </dl>
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">新闻</dt>
-                    <dd>
-                        <a href="http://m.toutiao.com" title="">奇闻</a>
-                        <a href="http://m.sohu.com" title="">搜狐</a>
-                        <a href="http://i.ifeng.com" title="">凤凰</a>
-                        <a href="http://m.huanqiu.com" title="">环球</a>
-                    </dd>
-                </dl>
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">视频</dt>
-                    <dd>
-                        <a href="http://tv.youku.com" title="">优酷</a>
-                        <a href="http://www.tudou.com" title="">土豆</a>
-                        <a href="http://m.le.com" title="">乐视</a>
-                        <a href="http://m.iqiyi.com" title="">爱奇艺</a>
-                    </dd>
-                </dl>
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">购物</dt>
-                    <dd>
-                        <a href="http://m.taobao.com" title="">淘宝</a>
-                        <a href="http://www.tmall.com" title="">天猫</a>
-                        <a href="http://m.dangdang.com" title="">当当</a>
-                        <a href="http://m.vip.com" title="">唯品会</a>
-                    </dd>
-                </dl>
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">商城</dt>
-                    <dd>
-                        <a href="http://m.jd.com" title="">京东</a>
-                        <a href="http://m.suning.com" title="">苏宁</a>
-                        <a href="http://m.yhd.com" title="">1号店</a>
-                        <a href="http://www.amazon.cn" title="">亚马逊</a>
-                    </dd>
-                </dl>
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">体育</dt>
-                    <dd>
-                        <a href="http://sports.sina.cn" title="">新浪</a>
-                        <a href="http://m.hupu.com/nb" title="">NBA</a>
-                        <a href="http://m.sohu.com" title="">搜狐</a>
-                        <a href="http://www.lottery.gov.cn" title="">彩票</a>
-                    </dd>
-                </dl>
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">汽车</dt>
-                    <dd>
-                        <a href="http://m.autohome.com.cn" title="">之家</a>
-                        <a href="http://www.xincheping.com" title="">新车</a>
-                        <a href="http://m.58che.comm" title="">58车</a>
-                        <a href="https://m.renrenche.com" title="">二手车</a>
-                    </dd>
-                </dl>
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">旅游</dt>
-                    <dd>
-                        <a href="http://m.ctrip.com" title="">携程</a>
-                        <a href="http://m.tuniu.com" title="">途牛</a>
-                        <a href="http://touch.qunar.com" title="">去哪儿</a>
-                        <a href="http://m.lvmama.com" title="">驴妈妈</a>
-                    </dd>
-                </dl>
-                 <dl class="fastNav" class="list mc">
-                    <dt class="label">直播</dt>
-                    <dd>
-                        <a href="http://www.inke.com/hotlive_list.html" title="">映客</a>
-                        <a href="http://m.douyu.com" title="">斗鱼</a>
-                        <a href="http://www.zhibo8.cc" title="">直播吧</a>
-                        <a href="http://m.panda.tv" title="">熊猫直播</a>
-                    </dd>
-                </dl>
 
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">笑话</dt>
-                    <dd>
-                        <a href="http://m.budejie.com" title="">不得姐</a>
-                        <a href="http://m.baozou.com/all/hot" title="">暴走</a>
-                        <a href="http://m.neihanshequ.com" title="">段子</a>
-                        <a href="http://www.qiushibaike.com" title="">糗百</a>
-                    </dd>
-                </dl>
-
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">财经</dt>
-                    <dd>
-                        <a href="http://wap.eastmoney.com/iphone/default.shtml" title="">东财</a>
-                        <a href="http://finance.sina.com.cn" title="">新浪</a>
-                        <a href="http://m.sohu.com/c/5/?_trans_=000115_3w" title="">搜狐</a>
-                        <a href="http://3g.cnfol.com" title="">中金</a>
-                    </dd>
-                </dl>
-
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">军事</dt>
-                    <dd>
-                        <a href="http://m.miercn.com" title="">米尔</a>
-                        <a href="http://mil.sina.cn" title="">新浪</a>
-                        <a href="http://mil.eastday.com" title="">东方</a>
-                        <a href="http://imil.ifeng.com" title="">凤凰</a>
-                    </dd>
-                </dl>
-
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">生活</dt>
-                    <dd>
-                        <a href="http://m.58.com" title="">58</a>
-                        <a href="http://3g.ganji.com" title="">赶集</a>
-                        <a href="http://m.jia.com" title="">齐家</a>
-                        <a href="http://m.to8to.com" title="">土巴兔</a>
-                    </dd>
-                </dl>
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">小说</dt>
-                    <dd>
-                        <a href="http://ubook.qq.com" title="">QQ</a>
-                        <a href="http://m.qidian.com" title="">起点</a>
-                        <a href="http://m.sxcnw.net" title="">书香</a>
-                        <a href="http://m.hongxiu.com" title="">爱阅读</a>
-                    </dd>
-                </dl>
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">团购</dt>
-                    <dd>
-                        <a href="https://m.nuomi.com" title="">糯米</a>
-                        <a href="http://i.meituan.com" title="">美团</a>
-                        <a href="http://m.dianping.com" title="">大众</a>
-                        <a href="http://jhs.m.taobao.com" title="">聚划算</a>
-                    </dd>
-                </dl>
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">社区</dt>
-                    <dd>
-                        <a href="http://www.tianya.cn/m" title="">天涯</a>
-                        <a href="http://m.zhihu.com" title="">知乎</a>
-                        <a href="http://m.douban.com" title="">豆瓣</a>
-                        <a href="http://m.weibo.cn/p/102803?wm=5091_0026" title="">微博</a>
-                    </dd>
-                </dl>
-                <dl class="fastNav" class="list mc">
-                    <dt class="label">交友</dt>
-                    <dd>
-                        <a href="http://v.jiayuan.com" title="">世纪</a>
-                        <a href="http://i.baihe.com" title="">百合</a>
-                        <a href="http://m.zhenai.com" title="">珍爱</a>
-                        <a href="http://3g.yuehui.163.com" title="">同城</a>
-                    </dd>
-                </dl>
+        </div>
+        <div class="section-actions">
+            <div class="section-action-item">
+                <img src="assets/images/icon_more.jpg" alt="" class="section-action-icon">
+                查看更多
+            </div>
+            <div onclick="fetchSomeVideos();" class="section-action-item end">
+                <img src="assets/images/icon_refresh.jpg" alt="" class="section-action-icon">
+                换一批
             </div>
         </div>
-
-        <div class="page-section">
-            <div id="toutiao" class="mc hide">
-                <div class="section-tit">
-                    <h3><img class="section-icon" src="assets/images/toutiao-icon.png" alt="">今日头条</h3>
-                </div>
-                <div id="toutiaos">
-                <!--news placeholder <dl class="toutiao" class="list">
-                    <dt class="thumb">
-                        <img src="assets/images/demo/toutiao.jpg" alt="">
-                    </dt>
-                    <dd>
-                        <a href="" title="">潘长江征战喜剧人 不服老获赞</a>
-                    </dd>
-                </dl>
-                <dl class="toutiao" class="list">
-                    <dt class="thumb">
-                        <img src="assets/images/demo/toutiao.jpg" alt="">
-                    </dt>
-                    <dd>
-                        <a href="" title="">潘长江征战喜剧人 不服老获赞</a>
-                    </dd>
-                </dl>-->
-                </div>
-                <div class="section-actions">
-                    <a href="http://m.toutiao.com" class="section-action-item">
-                        <img src="assets/images/icon_more.jpg" alt="" class="section-action-icon">
-                        查看更多
-                    </a>
-                    <div onclick="fetchSomeNews();" class="section-action-item end">
-                        <img src="assets/images/icon_refresh.jpg" alt="" class="section-action-icon">
-                        换一批
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="page-section">
-            <div id="video" class="mc hide">
-                <div class="section-tit">
-                    <h3><img class="section-icon" src="assets/images/budejie-icon.png" alt="">搞笑视频</h3>
-                    <span class="tip">3213看过</span>
-                </div>
-                <div id="videos">
-
-            
-                </div>
-                <div class="section-actions">
-                    <div class="section-action-item">
-                        <img src="assets/images/icon_more.jpg" alt="" class="section-action-icon">
-                        查看更多
-                    </div>
-                    <div onclick="fetchSomeVideos();" class="section-action-item end">
-                        <img src="assets/images/icon_refresh.jpg" alt="" class="section-action-icon">
-                        换一批
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
+</div>
 
 
-
-
-        
-
-
-
-
-
-
-    
-
-
-
-    </body>
+</body>
 </html>

@@ -1,13 +1,6 @@
 package com.zhan.app.news.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
 import java.net.InetAddress;
-import java.net.URL;
 import java.net.UnknownHostException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,28 +52,6 @@ public class IPUtil {
 			JSONObject address = JSONObject.parseObject(result);
 			if (address != null) {
 					cityName = address.getString("city");
-			}
-		}
-		return cityName;
-	}
-
-	public static String getCityNameByLatLng(String lat, String lng) {
-
-		String url = "http://api.map.baidu.com/geocoder/v2/?ak=o3Xbib1bOROyw4Uw35fdFGhu7ZE9uRnF&location=" + lat + ","
-				+ lng + "&output=json";
-		String result = HttpUtil.sendGet(url, null);
-
-		String cityName = null;
-		if (!TextUtils.isEmpty(result)) {
-			JSONObject address = JSONObject.parseObject(result);
-			if (address != null) {
-				JSONObject resultObj = address.getJSONObject("result");
-				if (resultObj != null) {
-					JSONObject addressComponent = resultObj.getJSONObject("addressComponent");
-					if (addressComponent != null) {
-						cityName = addressComponent.getString("city");
-					}
-				}
 			}
 		}
 		return cityName;

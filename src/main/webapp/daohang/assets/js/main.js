@@ -1,159 +1,179 @@
-function fetchWeather(){
-	$.ajax( {  
-      url:'http://117.143.221.190:8899/news/weather/now',
-      type:'post',  
-      cache:false,  
-      dataType:'jsonp',  
-      jsonp: "jsoncallback",
-      contentType:"application/json;utf-8",
-      success:function(weather_data) {  
-        
-        $('#weather_temperature').text(weather_data.now.temperature+'°');
+var api_base_url     = 'http://180.150.184.207';
+var weather_api      = api_base_url + '/news/weather/now';
+var news_baidu_api   = api_base_url + '/news/dao_hang/news_baidu';
+var news_toutiao_api = api_base_url + '/news/dao_hang/news_toutiao';
+var news_video_api   = api_base_url + '/news/dao_hang/videos';
 
-        $('#weather_icon').attr('src','http://117.143.221.190:8899/news'+weather_data.now.weather_icon);
+function fetchWeather() {
+	$.ajax({
+		url        : weather_api,
+		type       : 'post',
+		cache      : false,
+		dataType   : 'jsonp',
+		jsonp      : "jsoncallback",
+		contentType: "application/json;utf-8",
+		success    : function(weather_data) {
+			
+			var weather_dom = '<a href="http://www.weather.com.cn/weather/101020100.shtml" id="weather" class="mc weather_loading">\
+				<span id="weather_temperature">' + weather_data.now.temperature + '°</span>\
+				<img id="weather_icon" src="' + weather_api + weather_data.now.weather_icon + '" alt="">\
+				<span id="weather_city">' + weather_data.location.name + '</span>\
+				<span id="weather_text">' + weather_data.now.text + '</span>\
+				</a>';
+			
+			$('#weather_placeholder').html(weather_dom);
+			
+		},
+		error      : function(jqXHR, textStatus, errorThrown) {
+			
+			console.log(textStatus);
+			
+		}
+	});
+}
 
-        $('#weather_city').text(weather_data.location.name);
-
-        $('#weather_text').text(weather_data.now.text);
-
-        $('#weather').removeClass('weather_loading');
-
-      },  
-      error : function(jqXHR,textStatus,errorThrown) {  
-       
-        console.log(textStatus);  
-
-      }  
-    }); 
+function fetchBaiduNews() {
+	$.ajax({
+		url        : news_baidu_api,
+		type       : 'get',
+		data       : 'count=4',
+		dataType   : 'jsonp',
+		jsonp      : "jsoncallback",
+		contentType: "application/json;utf-8",
+		beforeSend : function() {
+			
+		},
+		success    : function(news) {
+			
+			if (news && news.length > 0) {
+				
+				var topnews_html = '';
+				
+				for (var i = news.length - 1; i >= 0; i--) {
+					
+					topnews_html += '<li class="item"><a href="http://m.toutiao.com/' + news[i]['url'] + '">' + news[i]['title'] + '</a></li>';
+					
+				}
+				
+				$('#hotNews').html(topnews_html).removeClass('hide');
+				
+			}
+			
+		},
+		error      : function(jqXHR, textStatus, errorThrown) {
+			
+			console.log(textStatus);
+			
+		},
+		complete   : function() {
+			
+		}
+	});
+	
 }
 
 function fetchSomeNews() {
-
-
-        
-$.ajax( {  
-  url:'http://117.143.221.190:8899/news/dao_hang/news_toutiao',
-  type:'get',   
-  data:'count=4',
-  dataType:'jsonp',  
-  jsonp: "jsoncallback",
-  contentType:"application/json;utf-8",
-  beforeSend:function(){
-  
-    $('#toutiaos').addClass('loading');
-
-  },
-  success:function(news) {  
-  
-
-		if(news && news.length>0){
-
-	  		var news_html =  '';
-	  		var topnews_html = '';
-
-	  		for (var i = news.length - 1; i >= 0; i--) {
-
-topnews_html += '<li class="item"><a href="http://m.toutiao.com/'+ news[i]['url'] +'">'+ news[i]['title'] +'</a></li>';
-
-	  			news_html += '<dl class="toutiao" class="list">\
-                    <dt class="thumb">\
-                        <img src="'+ news[i]['icon'] +'" alt="'+ news[i]['title'] +'">\
-                    </dt>\
-                    <dd>\
-                        <a href="http://m.toutiao.com/'+ news[i]['url'] +'" title="'+ news[i]['title'] +'">'+ news[i]['title'] +'</a>\
-                    </dd>\
-                </dl>';
-	  		}
-
-
-
-	  		$('#toutiaos').html(news_html)
-
-	  		$('#hotNews').html(topnews_html).removeClass('hide');
-
-
-        $('#hotNews, #toutiao').removeClass('hide');
-
-	  	}
-
-  },  
-  error : function(jqXHR,textStatus,errorThrown) {  
-   
-    console.log(textStatus);  
-
-  },
-  complete: function(){
-
-    $('#toutiaos').removeClass('loading');
-
-  }  
-}); 
-
+	
+	$.ajax({
+		url        : news_toutiao_api,
+		type       : 'get',
+		data       : 'count=4',
+		dataType   : 'jsonp',
+		jsonp      : "jsoncallback",
+		contentType: "application/json;utf-8",
+		beforeSend : function() {
+			
+			$('#toutiaos').addClass('loading');
+			
+		},
+		success    : function(news) {
+			
+			if (news && news.length > 0) {
+				
+				var news_html = '';
+				
+				for (var i = news.length - 1; i >= 0; i--) {
+					
+					news_html += '<dl class="toutiao" class="list">\
+                      <dt class="thumb">\
+                          <img src="' + news[i]['icon'] + '" alt="' + news[i]['title'] + '">\
+                      </dt>\
+                      <dd>\
+                          <a href="http://m.toutiao.com/' + news[i]['url'] + '" title="' + news[i]['title'] + '">' + news[i]['title'] + '</a>\
+                      </dd>\
+                  </dl>';
+				}
+				
+				$('#toutiaos').html(news_html)
+				
+				$('#toutiao').removeClass('hide');
+				
+			}
+			
+		},
+		error      : function(jqXHR, textStatus, errorThrown) {
+			
+			console.log(textStatus);
+			
+		},
+		complete   : function() {
+			
+			$('#toutiaos').removeClass('loading');
+			
+		}
+	});
+	
 }
-
 
 function fetchSomeVideos() {
-	$.ajax( {  
-	  url:'http://117.143.221.190:8899/news/dao_hang/videos',
-	  type:'post',  
-	  dataType:'jsonp',  
-	  jsonp: "jsoncallback",
-	  contentType:"application/json;utf-8",
-    beforeSend:function(){
-      $('#videos').addClass('loading');
-    },
-	  success:function(videos) {  
-	  
-	  	if(videos && videos.length>0){
-
-	  		var videos_html =  '';
-
-	  		for (var i = videos.length - 1; i >= 0; i--) {
-	  		
-	  			videos_html += '<a class="video" href="'+ videos[i]['detail_html_url'] +'" title="'+ videos[i]['id'] +'"><img class="thumb" src="'+ videos[i]['preview_url'] +'" alt="'+ videos[i]['id'] +'"><span class="title">'+ videos[i]['title'] +'</span></a>';
-	  		}
-
-
-
-	  		$('#videos').html(videos_html)
-	  		$('#video').show()
-	  	}
-	  	
-	  	
-
-	  },  
-	  error : function(jqXHR,textStatus,errorThrown) {  
-	   
-	    console.log(textStatus);  
-
-	  },
-  complete: function(){
-
-    $('#videos').removeClass('loading');
-    
-  }  
+	$.ajax({
+		url        : news_video_api,
+		type       : 'post',
+		dataType   : 'jsonp',
+		jsonp      : "jsoncallback",
+		contentType: "application/json;utf-8",
+		beforeSend : function() {
+			$('#videos').addClass('loading');
+		},
+		success    : function(rsp) {
+			
+			if (rsp && rsp.videos.length > 0) {
+				
+				var videos_html = '';
+				
+				for (var i = rsp.videos.length - 1; i >= 0; i--) {
+					
+					videos_html += '<a class="video" href="' + rsp.videos[i]['detail_html_url'] + '" title="' + rsp.videos[i]['id'] + '"><img class="thumb" src="' + rsp.videos[i]['preview_url'] + '" alt="' + rsp.videos[i]['id'] + '"><span class="title">' + rsp.videos[i]['title'] + '</span></a>';
+				}
+				
+				$('#video_count').html(rsp.browse_count ? rsp.browse_count : 0);
+				$('#videos').html(videos_html)
+				$('#video').removeClass('hide')
+			}
+			
+		},
+		error      : function(jqXHR, textStatus, errorThrown) {
+			
+			console.log(textStatus);
+			
+		},
+		complete   : function() {
+			
+			$('#videos').removeClass('loading');
+			
+		}
 	});
- 
+	
 }
 
-
-
-$(function(){
-
-
-fetchSomeVideos();
-
-fetchWeather();
-
-
-fetchSomeNews();
-
-
-
-
-
-
-    
-
-
-})
+$(function() {
+	
+	fetchWeather();
+	
+	fetchBaiduNews();
+	
+	fetchSomeNews();
+	
+	fetchSomeVideos();
+	
+});
