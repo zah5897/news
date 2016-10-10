@@ -54,6 +54,8 @@ public class DaoHangController {
 		if (count > 0) {
 			daoHanguserService.deleteByToken(user.getToken());
 		}
+		
+		user.setCreate_time(System.currentTimeMillis()/1000);
 		String id = daoHanguserService.insert(user);
 		ModelMap result = ResultUtil.getResultOKMap();
 		result.put("user_id", id);

@@ -36,7 +36,7 @@ public class UserController {
 		if (count > 0) {
 			userService.deleteByToken(user.getToken());
 		}
-
+		user.setCreate_time(System.currentTimeMillis()/1000);
 		String zh_cn = request.getParameter("zh-cn");
 		user.setZh_cn(zh_cn);
 		String id = userService.insert(user);

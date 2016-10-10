@@ -1,4 +1,5 @@
 var api_base_url     = 'http://180.150.184.207';
+var weather_icon_base_url      = api_base_url + '/news';
 var weather_api      = api_base_url + '/news/weather/now';
 var news_baidu_api   = api_base_url + '/news/dao_hang/news_baidu';
 var news_toutiao_api = api_base_url + '/news/dao_hang/news_toutiao';
@@ -14,9 +15,9 @@ function fetchWeather() {
 		contentType: "application/json;utf-8",
 		success    : function(weather_data) {
 			
-			var weather_dom = '<a href="http://www.weather.com.cn/weather/101020100.shtml" id="weather" class="mc weather_loading">\
+			var weather_dom = '<a href="http://m.weather.com.cn" id="weather" class="mc weather_loading">\
 				<span id="weather_temperature">' + weather_data.now.temperature + '°</span>\
-				<img id="weather_icon" src="' + weather_api + weather_data.now.weather_icon + '" alt="">\
+				<img id="weather_icon" src="' + weather_icon_base_url + weather_data.now.weather_icon + '" alt="">\
 				<span id="weather_city">' + weather_data.location.name + '</span>\
 				<span id="weather_text">' + weather_data.now.text + '</span>\
 				</a>';
@@ -51,7 +52,7 @@ function fetchBaiduNews() {
 				
 				for (var i = news.length - 1; i >= 0; i--) {
 					
-					topnews_html += '<li class="item"><a href="http://m.toutiao.com/' + news[i]['url'] + '">' + news[i]['title'] + '</a></li>';
+					topnews_html += '<li class="item"><a href="' + news[i]['url'] + '">' + news[i]['title'] + '</a></li>';
 					
 				}
 				
@@ -99,7 +100,7 @@ function fetchSomeNews() {
                           <img src="' + news[i]['icon'] + '" alt="' + news[i]['title'] + '">\
                       </dt>\
                       <dd>\
-                          <a href="http://m.toutiao.com/' + news[i]['url'] + '" title="' + news[i]['title'] + '">' + news[i]['title'] + '</a>\
+                          <a href="' + news[i]['url'] + '" title="' + news[i]['title'] + '">' + news[i]['title'] + '</a>\
                       </dd>\
                   </dl>';
 				}

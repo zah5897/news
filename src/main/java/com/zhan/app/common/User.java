@@ -20,6 +20,8 @@ public class User {
 	private String zh_cn;
 	
 
+	private long create_time;
+	
 	public String getId() {
 		return id;
 	}
@@ -58,6 +60,22 @@ public class User {
 
 	public void setZh_cn(String zh_cn) {
 		this.zh_cn = zh_cn;
+	}
+
+	public int getTest() {
+		return test;
+	}
+
+	public void setTest(int test) {
+		this.test = test;
+	}
+
+	public long getCreate_time() {
+		return create_time;
+	}
+
+	public void setCreate_time(long create_time) {
+		this.create_time = create_time;
 	}
 
 	

@@ -19,7 +19,7 @@ public class DaoHangUser {
 	
 	private String zh_cn;
 	
-
+	private long create_time;
 	public String getId() {
 		return id;
 	}
@@ -58,6 +58,14 @@ public class DaoHangUser {
 
 	public void setZh_cn(String zh_cn) {
 		this.zh_cn = zh_cn;
+	}
+
+	public long getCreate_time() {
+		return create_time;
+	}
+
+	public void setCreate_time(long create_time) {
+		this.create_time = create_time;
 	}
 
 	
