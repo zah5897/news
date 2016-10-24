@@ -13,8 +13,8 @@
 
 
 
-	 <mongo:mongo host="127.0.0.1" port="27016" />
-	 <!--  <mongo:mongo host="180.150.184.207" port="27016" />  -->
+	 <!-- <mongo:mongo host="127.0.0.1" port="27016" /> -->
+	    <mongo:mongo host="180.150.184.207" port="27016" /> 
 
 	<!-- Offers convenience methods and automatic mapping between MongoDB JSON 
 		documents and your domain classes. -->

@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-@Document(collection = "push_user")
+@Document(collection = "push_news_user")
 public class User {
 	@Id
 	private String id;
@@ -21,6 +21,9 @@ public class User {
 	
 
 	private long create_time;
+	
+	
+	private String aid;
 	
 	public String getId() {
 		return id;
@@ -77,6 +80,16 @@ public class User {
 	public void setCreate_time(long create_time) {
 		this.create_time = create_time;
 	}
+
+	public String getAid() {
+		return aid;
+	}
+
+	public void setAid(String aid) {
+		this.aid = aid;
+	}
+
+ 
 
 	
 }

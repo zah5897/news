@@ -23,23 +23,42 @@ public class UserController {
 	private UserService userService;
 
 	@RequestMapping("add_token")
-	public ModelMap add_token(HttpServletRequest request, User user) {
+	public ModelMap add_token(HttpServletRequest request,User user) {
 		if (TextUtils.isEmpty(user.getDeviceId()) || TextUtils.isEmpty(user.getToken())) {
 			return ResultUtil.getResultMap(ERROR.ERR_PARAM);
 		}
-
-		long count = userService.countDevice(user.getDeviceId());
-		if (count > 0) {
-			userService.deleteByDetive(user.getDeviceId());
-		}
-		count = userService.countToken(user.getToken());
-		if (count > 0) {
-			userService.deleteByToken(user.getToken());
+		
+		String zh_cn = request.getParameter("zh-cn");
+		if(!TextUtils.isEmpty(zh_cn)){
+			user.setZh_cn(zh_cn);
 		}
 		user.setCreate_time(System.currentTimeMillis()/1000);
-		String zh_cn = request.getParameter("zh-cn");
-		user.setZh_cn(zh_cn);
-		String id = userService.insert(user);
+
+		
+		String id=null;
+		long count;
+		if("1163486509".equals(user.getAid())){
+			String collectionName="push_mobile_browser_user";
+			count = userService.countDevice(collectionName,user.getDeviceId());
+			if (count > 0) {
+				userService.deleteByDetive(collectionName,user.getDeviceId());
+			}
+			count = userService.countToken(collectionName,user.getToken());
+			if (count > 0) {
+				userService.deleteByToken(collectionName,user.getToken());
+			}
+			id = userService.insert(collectionName,user);
+		}else{
+			count = userService.countDevice(user.getDeviceId());
+			if (count > 0) {
+				userService.deleteByDetive(user.getDeviceId());
+			}
+			count = userService.countToken(user.getToken());
+			if (count > 0) {
+				userService.deleteByToken(user.getToken());
+			}
+			id = userService.insert(user);
+		}
 		ModelMap result = ResultUtil.getResultOKMap();
 		result.put("user_id", id);
 		return result;

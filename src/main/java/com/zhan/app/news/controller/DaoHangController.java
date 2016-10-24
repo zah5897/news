@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.zhan.app.common.DaoHangUser;
 import com.zhan.app.common.News;
 import com.zhan.app.common.NewsDetial;
+import com.zhan.app.common.User;
 import com.zhan.app.common.Video;
 import com.zhan.app.news.exception.ERROR;
 import com.zhan.app.news.service.DaoHangUserService;
@@ -41,7 +41,7 @@ public class DaoHangController {
 
 	@RequestMapping("add_token")
 	@ResponseBody
-	public ModelMap add_token(HttpServletRequest request, DaoHangUser user) {
+	public ModelMap add_token(HttpServletRequest request, User user) {
 		if (TextUtils.isEmpty(user.getDeviceId()) || TextUtils.isEmpty(user.getToken())) {
 			return ResultUtil.getResultMap(ERROR.ERR_PARAM);
 		}

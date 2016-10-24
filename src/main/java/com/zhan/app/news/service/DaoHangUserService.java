@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import com.zhan.app.common.DaoHangUser;
+import com.zhan.app.common.User;
 import com.zhan.app.news.dao.DaoHangUserDao;
 
 @Service
@@ -17,7 +17,7 @@ public class DaoHangUserService {
 	@Resource
 	private DaoHangUserDao daoHanguserDao;
 
-	public String insert(DaoHangUser user) {
+	public String insert(User user) {
 		return daoHanguserDao.save(user);
 	}
 
@@ -37,15 +37,15 @@ public class DaoHangUserService {
 		daoHanguserDao.deleteByToken(token);
 	}
 
-	public DaoHangUser getUser(String deviceId, String token) {
+	public User getUser(String deviceId, String token) {
 		return daoHanguserDao.getUser(deviceId, token);
 	}
 
-	public DaoHangUser getUserByDevice(String deviceId) {
+	public User getUserByDevice(String deviceId) {
 		return daoHanguserDao.getUserByDevice(deviceId);
 	}
 
-	public DaoHangUser getUserByToken(String token) {
+	public User getUserByToken(String token) {
 		return daoHanguserDao.getUserByToken(token);
 	}
 
