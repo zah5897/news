@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.zhan.app.common.node.Node;
 
-@Document(collection = "prepare_detial_news")
+@Document(collection = "spider_news_detial")
 public class NewsDetial {
 	@Id
 	public String id;
@@ -17,4 +17,5 @@ public class NewsDetial {
 	public String detial_url;
 	public List<Node> nodes;
 
+	public int type=0; //0 为头条，1为百度
 }
