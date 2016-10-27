@@ -66,6 +66,9 @@ public class NewsService {
 		}
 		return random;
 	}
+	public List<News> browser_news_toutiao(String publishTime,int count) {
+		return newsDao.list_toutiao(publishTime,count);
+	}
 
 	public List<News> news_baidu(int count) {
 		List<News> news = (List<News>) newsDao.list_random_baidu(null);

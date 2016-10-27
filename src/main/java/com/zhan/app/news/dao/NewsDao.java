@@ -63,6 +63,17 @@ public class NewsDao extends BaseDao {
 		}
 		return mongoTemplate.find(query, News.class);
 	}
+	public List<News> list_toutiao(String publish_time,int count) {
+		Query query = new Query();
+		query.with(new Sort(new Order(Direction.DESC, "publish_time")));
+		query.addCriteria(Criteria.where("type").is(0));
+		query.limit(count);
+		if (!TextUtils.isEmpty(publish_time)) {
+			Criteria criteria = Criteria.where("publish_time").lt(publish_time);
+			query.addCriteria(criteria);
+		}
+		return mongoTemplate.find(query, News.class);
+	}
 	public List<?> list_random_baidu(String publish_time) {
 		Query query = new Query();
 		query.with(new Sort(new Order(Direction.DESC, "publish_time")));
