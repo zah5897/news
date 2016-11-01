@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.mongodb.util.Hash;
 import com.zhan.app.common.News;
 import com.zhan.app.common.NewsDetial;
 import com.zhan.app.common.Video;
