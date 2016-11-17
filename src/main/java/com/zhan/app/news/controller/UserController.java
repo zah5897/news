@@ -48,6 +48,17 @@ public class UserController {
 				userService.deleteByToken(collectionName,user.getToken());
 			}
 			id = userService.insert(collectionName,user);
+		}else if("436670930".equals(user.getAid())){
+			String collectionName="push_findu";
+			count = userService.countDevice(collectionName,user.getDeviceId());
+			if (count > 0) {
+				userService.deleteByDetive(collectionName,user.getDeviceId());
+			}
+			count = userService.countToken(collectionName,user.getToken());
+			if (count > 0) {
+				userService.deleteByToken(collectionName,user.getToken());
+			}
+			id = userService.insert(collectionName,user);
 		}else{
 			count = userService.countDevice(user.getDeviceId());
 			if (count > 0) {
