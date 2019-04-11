@@ -1,35 +1,26 @@
 package com.zhan.app.common;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.zhan.app.annotation.Id;
+import com.zhan.app.annotation.Table;
 
-@Document(collection = "push_news_user")
+@Table(name = "push_news_user")
 public class User {
 	@Id
-	private String id;
+	private long id;
 	private String deviceId;
 	private String token;
-	@JSONField(serialize = false)
 	private int state;
-	@JSONField(serialize = false)
 	private int test;
-	
-	
 	private String zh_cn;
-	
-
 	private long create_time;
-	
-	
 	private String aid;
 	
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

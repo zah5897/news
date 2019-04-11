@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.zhan.app.common.News;
 import com.zhan.app.common.NewsDetial;
-import com.zhan.app.common.Video;
 import com.zhan.app.news.dao.NewsDao;
 
 @Service
@@ -18,19 +17,7 @@ public class NewsService {
 	@Resource
 	private NewsDao newsDao;
 
-	public String insert(News news) {
-		return newsDao.save(news);
-	}
-
-	public long insert(NewsDetial news) {
-		newsDao.save(news);
-		return 0;
-	}
-
-	public boolean hasExistNews(News news) {
-		long count = newsDao.getCount(news);
-		return count > 0;
-	}
+	 
 
 	public List<?> listNews(String publish_time, int limit) {
 		return newsDao.list(publish_time, limit);
@@ -103,32 +90,32 @@ public class NewsService {
 		return newsDao.find(id);
 	}
 
-	public List<Video> listVideosRandom(int count) {
-		List<Video> limit100 = newsDao.listVideos(100);
-		int video_size = limit100.size();
-		List<Video> limitCounts = new ArrayList<Video>();
-		Random ran = new Random();
-		List<Integer> existIndexs = new ArrayList<Integer>();
+//	public List<Video> listVideosRandom(int count) {
+//		List<Video> limit100 = newsDao.listVideos(100);
+//		int video_size = limit100.size();
+//		List<Video> limitCounts = new ArrayList<Video>();
+//		Random ran = new Random();
+//		List<Integer> existIndexs = new ArrayList<Integer>();
+//
+//		if (video_size < count) {
+//			count = video_size;
+//		}
+//
+//		int i = 0;
+//		while (i < count) {
+//			int index = ran.nextInt(video_size);
+//			if (existIndexs.contains(index)) {
+//				continue;
+//			}
+//			limitCounts.add(limit100.get(index));
+//			existIndexs.add(index);
+//			i++;
+//		}
+//		return limitCounts;
+//	}
 
-		if (video_size < count) {
-			count = video_size;
-		}
-
-		int i = 0;
-		while (i < count) {
-			int index = ran.nextInt(video_size);
-			if (existIndexs.contains(index)) {
-				continue;
-			}
-			limitCounts.add(limit100.get(index));
-			existIndexs.add(index);
-			i++;
-		}
-		return limitCounts;
-	}
-
-	public Video findVideoById(String id) {
-		return newsDao.findVideo(id);
-	}
+//	public Video findVideoById(String id) {
+//		return newsDao.findVideo(id);
+//	}
 
 }
